@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, useScroll, useSpring } from "motion/react";
@@ -64,17 +65,19 @@ export function ServicesRail() {
             href={`/services/${s.slug}`}
             data-card
             className="group relative flex h-[30rem] w-[19.5rem] shrink-0 snap-start flex-col justify-between overflow-hidden rounded-3xl bg-graphite p-8 text-white transition-transform duration-500 ease-apple hover:-translate-y-1 md:h-[34rem] md:w-[24rem]"
-            style={{ ["--hue" as string]: `${s.hue}deg` }}
           >
             <div
               aria-hidden
-              className="pointer-events-none absolute -right-24 -top-24 size-72 rounded-full opacity-80 blur-3xl transition-transform duration-700 ease-apple group-hover:translate-x-[-10%] group-hover:translate-y-[10%] group-hover:scale-110"
-              style={{
-                background:
-                  "radial-gradient(circle at 40% 40%, var(--color-brand-orange), var(--color-brand-pink) 55%, transparent 75%)",
-                filter: "hue-rotate(var(--hue)) saturate(1.05)",
-              }}
-            />
+              className="pointer-events-none absolute inset-x-4 top-12 h-[42%] transition-transform duration-700 ease-apple group-hover:scale-[1.06] md:top-14"
+            >
+              <Image
+                src={`/services/${s.slug}.png`}
+                alt=""
+                fill
+                sizes="24rem"
+                className="object-contain object-center mix-blend-screen"
+              />
+            </div>
             <div className="relative">
               <p className="text-fine text-white/55">
                 {String(i + 1).padStart(2, "0")} / {String(services.length).padStart(2, "0")}

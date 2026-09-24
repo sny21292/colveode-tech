@@ -6,25 +6,47 @@ import type { Project } from "@/content/projects";
 
 export function ProjectTile({ project, large = false, tone = "light" }: { project: Project; large?: boolean; tone?: "light" | "dark" }) {
   const muted = tone === "light" ? "text-mute" : "text-white/60";
+
+  if (large) {
+    return (
+      <Link href={`/work/${project.slug}`} className="group block">
+        <CoverArt
+          hue={project.hue}
+          image={project.image}
+          label={project.client || project.title}
+          className="aspect-[16/9] rounded-3xl ring-1 ring-ink/[0.06]"
+        />
+        <div className="mt-5 flex items-start justify-between gap-6">
+          <div>
+            <h3 className="text-title max-w-[28ch] text-balance font-semibold tracking-[-0.02em] transition-colors duration-300 group-hover:text-graphite/70">
+              {project.title}
+            </h3>
+            <p className={`mt-2 text-fine ${muted}`}>
+              {project.category}, {project.client}
+            </p>
+          </div>
+          <span className={`shrink-0 text-fine ${muted}`}>{project.year}</span>
+        </div>
+      </Link>
+    );
+  }
+
   return (
-    <Link href="/work" className="group block">
+    <Link href={`/work/${project.slug}`} className="group flex flex-col">
       <CoverArt
         hue={project.hue}
-        variant={project.variant}
-        className={`rounded-3xl transition-transform duration-700 ease-apple group-hover:scale-[1.01] ${
-          large ? "aspect-[16/9]" : "aspect-[4/3]"
-        }`}
+        image={project.image}
+        label={project.client || project.title}
+        className="aspect-[4/3] rounded-2xl ring-1 ring-ink/[0.06]"
       />
-      <div className="mt-5 flex items-start justify-between gap-6">
-        <div>
-          <h3 className={`text-balance font-semibold tracking-[-0.02em] ${large ? "text-title max-w-[28ch]" : "text-[1.25rem] leading-snug max-w-[30ch]"}`}>
-            {project.title}
-          </h3>
-          <p className={`mt-2 text-fine ${muted}`}>
-            {project.category}, {project.client}
-          </p>
-        </div>
-        <span className={`shrink-0 text-fine ${muted}`}>{project.year}</span>
+      <h3 className="mt-4 line-clamp-2 min-h-[3rem] text-copy font-semibold leading-snug tracking-[-0.02em] transition-colors duration-300 group-hover:text-graphite/70">
+        {project.title}
+      </h3>
+      <div className={`mt-1.5 flex items-baseline justify-between gap-3 text-fine ${muted}`}>
+        <span className="truncate">
+          {project.client} · {project.category}
+        </span>
+        <span className="shrink-0 tabular-nums">{project.year}</span>
       </div>
     </Link>
   );
