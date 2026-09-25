@@ -211,7 +211,11 @@ export function Metaballs({ className = "", intensity = 1 }: Props) {
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerleave", onLeave);
       document.removeEventListener("visibilitychange", onVis);
-      gl.getExtension("WEBGL_lose_context")?.loseContext();
+      // Don't force-lose the context here: getContext() returns the same
+      // object on the next mount, and a lost context can't compile shaders
+      // (COMPILE_STATUS false, null info log). React Strict Mode's mount→
+      // cleanup→remount in dev would otherwise leave a dead canvas. The GPU
+      // resources are reclaimed when the canvas is garbage-collected.
     };
   }, [reduced, intensity]);
 

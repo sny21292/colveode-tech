@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import { PageHeader } from "@/components/page-header";
-import { ProjectTile } from "@/components/work-grid";
-import { Reveal } from "@/components/reveal";
+import Link from "next/link";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
+import { WordReveal, Reveal } from "@/components/reveal";
+import { WorkExplorer } from "@/components/work-explorer";
 import { Cta } from "@/components/cta";
 import { projects } from "@/content/projects";
 
@@ -13,19 +15,50 @@ export const metadata: Metadata = {
 export default function WorkPage() {
   return (
     <>
-      <PageHeader
-        title="Work that carries real weight."
-        lede="A selection of projects across retail, logistics, healthcare, finance and services."
-      />
-      <section className="bg-white py-20 text-graphite md:py-28">
-        <div className="wrap grid gap-x-8 gap-y-16 md:grid-cols-2">
-          {projects.map((p, i) => (
-            <Reveal key={p.slug} delay={(i % 2) * 0.08} amount={0.15}>
-              <ProjectTile project={p} />
+      <section className="relative isolate overflow-hidden bg-ink text-white">
+        <div className="wrap grid items-center gap-8 pb-10 pt-24 md:grid-cols-[1.1fr_0.9fr] md:gap-6 md:pb-14 md:pt-28">
+          <div className="relative z-10">
+            <p className="text-fine font-medium tracking-[0.16em] text-white/45">Our work</p>
+            <h1 className="text-headline mt-4 max-w-[16ch] text-balance">
+              <WordReveal text="Work that carries real weight." />
+            </h1>
+            <Reveal as="p" delay={0.4} className="text-lede mt-6 max-w-[40ch] text-white/70">
+              A selection of projects across retail, logistics, healthcare, finance and services.
             </Reveal>
-          ))}
+            <Reveal delay={0.5} className="mt-9">
+              <Link
+                href="/contact"
+                className="inline-flex h-12 items-center gap-2 rounded-full bg-gradient-to-r from-brand-pink to-brand-orange px-6 text-[15px] font-medium text-white shadow-[0_12px_34px_-10px_rgba(255,15,106,0.55)] transition-transform duration-300 ease-apple hover:scale-[1.02] active:scale-[0.98]"
+              >
+                Start a project
+                <ArrowRight className="size-4" />
+              </Link>
+            </Reveal>
+          </div>
+
+          <div className="relative aspect-[4/3] w-full md:aspect-auto md:h-[26rem]">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background: "radial-gradient(closest-side at 58% 46%, rgba(255,60,120,0.42), transparent 72%)",
+                filter: "blur(18px)",
+              }}
+            />
+            <Image
+              src="/work/work-hero.png"
+              alt=""
+              aria-hidden
+              fill
+              sizes="(max-width: 768px) 88vw, 40vw"
+              className="object-contain object-center mix-blend-screen"
+              priority
+            />
+          </div>
         </div>
       </section>
+
+      <WorkExplorer projects={projects} />
       <Cta />
     </>
   );

@@ -2,13 +2,14 @@
 
 import { useActionState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import { ArrowRight, Lock } from "lucide-react";
 import { sendEnquiry, type ContactState } from "./actions";
 import { site } from "@/content/site";
 
 const initial: ContactState = { status: "idle" };
 
 const field =
-  "w-full rounded-2xl border border-ink/10 bg-fog px-5 py-4 text-copy text-graphite placeholder:text-mute/70 transition-[border-color,box-shadow] duration-300 focus:border-ink/30 focus:outline-none focus:ring-4 focus:ring-brand-pink/15";
+  "w-full rounded-xl border border-ink/10 bg-fog px-4 py-3.5 text-copy text-graphite placeholder:text-mute/70 transition-[border-color,box-shadow] duration-300 focus:border-ink/30 focus:outline-none focus:ring-4 focus:ring-brand-pink/15";
 
 export function ContactForm() {
   const [state, action, pending] = useActionState(sendEnquiry, initial);
@@ -34,15 +35,15 @@ export function ContactForm() {
   return (
     <form action={action} noValidate className="grid gap-5">
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field label="Name" name="name" defaultValue={v?.name} error={state.errors?.name} autoComplete="name" required />
-        <Field label="Email" name="email" type="email" defaultValue={v?.email} error={state.errors?.email} autoComplete="email" required />
+        <Field label="Name" name="name" defaultValue={v?.name} error={state.errors?.name} autoComplete="name" required placeholder="Your name" />
+        <Field label="Email" name="email" type="email" defaultValue={v?.email} error={state.errors?.email} autoComplete="email" required placeholder="you@company.com" />
       </div>
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field label="Company (optional)" name="company" defaultValue={v?.company} autoComplete="organization" />
+        <Field label="Company (optional)" name="company" defaultValue={v?.company} autoComplete="organization" placeholder="Your company" />
         <label className="grid gap-2">
           <span className="text-fine font-medium text-graphite">Budget (optional)</span>
           <select name="budget" defaultValue={v?.budget ?? ""} className={`${field} appearance-none`}>
-            <option value="">Not sure yet</option>
+            <option value="">Select budget range</option>
             <option>Under $5k</option>
             <option>$5k to $15k</option>
             <option>$15k to $50k</option>
@@ -51,10 +52,12 @@ export function ContactForm() {
         </label>
       </div>
       <label className="grid gap-2">
-        <span className="text-fine font-medium text-graphite">What are you working on?</span>
+        <span className="text-fine font-medium text-graphite">
+          What are you working on? <span className="text-brand-pink">*</span>
+        </span>
         <textarea
           name="message"
-          rows={6}
+          rows={5}
           required
           defaultValue={v?.message}
           aria-invalid={!!state.errors?.message}
@@ -66,16 +69,19 @@ export function ContactForm() {
       {/* honeypot */}
       <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
 
-      <div className="mt-2 flex flex-wrap items-center gap-5">
+      <div className="mt-2 flex flex-wrap items-center gap-x-6 gap-y-4">
         <button
           type="submit"
           disabled={pending}
-          className="inline-flex h-12 items-center justify-center rounded-full bg-ink px-6 text-[15px] font-medium text-white transition-[background-color,transform] duration-300 ease-apple hover:bg-graphite active:scale-[0.98] disabled:opacity-60"
+          className="inline-flex h-12 items-center gap-2 rounded-full bg-gradient-to-r from-ink to-brand-pink px-6 text-[15px] font-medium text-white shadow-[0_12px_30px_-12px_rgba(255,15,106,0.55)] transition-transform duration-300 ease-apple hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60"
         >
           {pending ? "Sending…" : "Send message"}
+          <ArrowRight className="size-4" />
         </button>
-        <p className="text-fine text-mute">
-          Or email <a className="underline-offset-3 hover:underline" href={`mailto:${site.email}`}>{site.email}</a>
+        <p className="inline-flex items-center gap-2 text-fine text-mute">
+          <Lock className="size-3.5" />
+          Or email us directly at{" "}
+          <a className="underline-offset-2 hover:underline" href={`mailto:${site.email}`}>{site.email}</a>
         </p>
       </div>
 
@@ -110,7 +116,10 @@ function Field({
 } & React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <label className="grid gap-2">
-      <span className="text-fine font-medium text-graphite">{label}</span>
+      <span className="text-fine font-medium text-graphite">
+        {label}
+        {rest.required && <span className="text-brand-pink"> *</span>}
+      </span>
       <input name={name} type={type} aria-invalid={!!error} className={field} {...rest} />
       <FieldError error={error} />
     </label>

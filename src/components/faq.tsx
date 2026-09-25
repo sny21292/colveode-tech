@@ -1,25 +1,66 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
-import { Plus } from "lucide-react";
+import { Plus, Minus, Clock, Briefcase, Box, ShieldCheck, Headphones, Monitor, type LucideIcon } from "lucide-react";
 import { faq } from "@/content/faq";
 import { Reveal } from "@/components/reveal";
 
-export function Faq({ tone = "light" }: { tone?: "light" | "dark" }) {
+const ICONS: LucideIcon[] = [Clock, Briefcase, Box, ShieldCheck, Headphones, Monitor];
+
+export function Faq() {
   const [open, setOpen] = useState<number | null>(0);
-  const light = tone === "light";
+
   return (
-    <section className={`${light ? "bg-white text-graphite" : "bg-ink text-white"} py-24 md:py-32`}>
-      <div className="wrap grid gap-12 md:grid-cols-[1fr_1.4fr] md:gap-20">
-        <Reveal as="h2" className="text-headline max-w-[12ch] text-balance">
-          Questions we hear most.
-        </Reveal>
-        <div className={`divide-y ${light ? "divide-ink/10" : "divide-white/10"}`}>
+    <section className="relative isolate overflow-hidden bg-fog py-20 text-graphite md:py-28">
+      <div className="wrap grid gap-12 md:grid-cols-[0.88fr_1.12fr] md:gap-16">
+        {/* Left: intro + artwork */}
+        <div>
+          <Reveal className="mb-5">
+            <span className="flex items-center gap-3 text-fine font-medium uppercase tracking-[0.16em] text-mute">
+              <span aria-hidden className="h-px w-8 bg-brand-pink" />
+              FAQ
+            </span>
+          </Reveal>
+          <Reveal as="h2" delay={0.05} className="text-headline max-w-[12ch] text-balance">
+            Questions we hear <span className="text-brand-pink">most.</span>
+          </Reveal>
+          <Reveal as="p" delay={0.12} className="text-copy mt-5 max-w-[42ch] text-mute">
+            Quick answers to common questions about our services, process and support. Still have a question?
+            We’re here to help.
+          </Reveal>
+          <Reveal delay={0.18} className="relative mt-8 hidden aspect-[4/3] max-w-[26rem] md:block">
+            <Image
+              src="/backgrounds/faq-art.jpg"
+              alt=""
+              aria-hidden
+              fill
+              sizes="40vw"
+              className="object-contain object-center"
+              style={{
+                maskImage: "radial-gradient(72% 72% at 50% 52%, #000 56%, transparent 100%)",
+                WebkitMaskImage: "radial-gradient(72% 72% at 50% 52%, #000 56%, transparent 100%)",
+              }}
+            />
+          </Reveal>
+        </div>
+
+        {/* Right: accordion cards */}
+        <div className="space-y-3">
           {faq.map((item, i) => {
             const isOpen = open === i;
+            const Icon = ICONS[i % ICONS.length];
             return (
-              <div key={item.q}>
+              <Reveal
+                as="div"
+                key={item.q}
+                delay={Math.min(i, 4) * 0.05}
+                amount={0.2}
+                className={`rounded-2xl ring-1 transition-colors duration-300 ${
+                  isOpen ? "bg-brand-pink/[0.05] ring-brand-pink/20" : "bg-white ring-ink/[0.06]"
+                }`}
+              >
                 <h3>
                   <button
                     type="button"
@@ -27,16 +68,21 @@ export function Faq({ tone = "light" }: { tone?: "light" | "dark" }) {
                     aria-expanded={isOpen}
                     aria-controls={`faq-${i}`}
                     id={`faq-btn-${i}`}
-                    className="flex w-full items-center justify-between gap-6 py-6 text-left text-[1.25rem] font-medium tracking-[-0.02em] md:text-[1.375rem]"
+                    className="flex w-full items-center gap-4 p-5 text-left"
                   >
-                    <span>{item.q}</span>
-                    <motion.span
-                      animate={{ rotate: isOpen ? 45 : 0 }}
-                      transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
-                      className={`inline-flex size-8 shrink-0 items-center justify-center rounded-full ${light ? "bg-ink/6" : "bg-white/10"}`}
+                    <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-pink/10 text-brand-pink">
+                      <Icon className="size-5" strokeWidth={2} aria-hidden />
+                    </span>
+                    <span className="flex-1 text-[1.05rem] font-semibold leading-snug tracking-[-0.02em]">
+                      {item.q}
+                    </span>
+                    <span
+                      className={`inline-flex size-8 shrink-0 items-center justify-center rounded-full transition-colors duration-300 ${
+                        isOpen ? "bg-brand-pink/10 text-brand-pink" : "bg-ink/[0.05] text-graphite"
+                      }`}
                     >
-                      <Plus className="size-4" aria-hidden />
-                    </motion.span>
+                      {isOpen ? <Minus className="size-4" aria-hidden /> : <Plus className="size-4" aria-hidden />}
+                    </span>
                   </button>
                 </h3>
                 <AnimatePresence initial={false}>
@@ -51,11 +97,11 @@ export function Faq({ tone = "light" }: { tone?: "light" | "dark" }) {
                       transition={{ duration: 0.45, ease: [0.32, 0.72, 0, 1] }}
                       className="overflow-hidden"
                     >
-                      <p className={`max-w-[60ch] pb-7 text-copy ${light ? "text-mute" : "text-white/65"}`}>{item.a}</p>
+                      <p className="max-w-[64ch] pb-5 pl-[3.5rem] pr-5 text-copy text-mute">{item.a}</p>
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
+              </Reveal>
             );
           })}
         </div>

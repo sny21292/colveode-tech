@@ -30,7 +30,7 @@ export const services: Service[] = [
       "Technical SEO and structured data",
       "Ongoing maintenance and support",
     ],
-    stack: ["Next.js", "React", "Node.js", "Laravel", "WordPress", "Vercel"],
+    stack: ["Next.js", "React", "Node.js", "TypeScript", "Tailwind CSS", "Laravel", "PHP", "WordPress", "PostgreSQL", "MySQL", "Vercel"],
     hue: 0,
   },
   {
@@ -52,7 +52,7 @@ export const services: Service[] = [
       "Mobile-first checkout",
       "Product SEO and structured data",
     ],
-    stack: ["Shopify", "BigCommerce", "WooCommerce", "Magento", "Stripe", "PayPal"],
+    stack: ["Shopify", "WooCommerce", "BigCommerce", "Magento", "Stripe", "PayPal", "Razorpay", "Mailchimp", "Algolia", "Square"],
     hue: 14,
   },
   {
@@ -74,7 +74,7 @@ export const services: Service[] = [
       "Private and permissioned chains",
       "Integration with existing systems and ERPs",
     ],
-    stack: ["Ethereum", "Solidity", "Solana", "Polkadot", "Hyperledger", "Web3.js"],
+    stack: ["Ethereum", "Solidity", "Solana", "Polkadot", "Hyperledger", "Web3.js", "Ethers", "Chainlink", "IPFS", "Rust"],
     hue: -18,
   },
   {
@@ -96,7 +96,7 @@ export const services: Service[] = [
       "Automation of manual processes",
       "Long-term support and iteration",
     ],
-    stack: ["Node.js", "Laravel", "PostgreSQL", "React", "AWS", "Docker"],
+    stack: ["Node.js", "TypeScript", "Laravel", "Python", "PostgreSQL", "MongoDB", "Redis", "React", "AWS", "Docker", "Kubernetes"],
     hue: 28,
   },
   {
@@ -118,7 +118,7 @@ export const services: Service[] = [
       "Local SEO",
       "Reporting and ongoing optimisation",
     ],
-    stack: ["Search Console", "Analytics", "Ahrefs", "Schema.org", "Core Web Vitals"],
+    stack: ["Search Console", "Analytics", "Google Tag Manager", "Ahrefs", "Semrush", "Lighthouse", "Cloudflare", "Schema.org", "Core Web Vitals"],
     hue: 8,
   },
   {
@@ -140,7 +140,7 @@ export const services: Service[] = [
       "Cloud and infrastructure advice",
       "Team training and handover",
     ],
-    stack: ["REST", "GraphQL", "Zapier", "AWS", "Stripe", "Salesforce"],
+    stack: ["REST", "GraphQL", "Zapier", "AWS", "Stripe", "Salesforce", "HubSpot", "Airtable", "Firebase", "Supabase"],
     hue: -8,
   },
 ];
