@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 /** A screenshot in a subtle browser frame. */
 function BrowserShot({ project, aspect = "aspect-[16/10]" }: { project: Project; aspect?: string }) {
   return (
-    <div className="overflow-hidden rounded-2xl bg-graphite shadow-[0_40px_80px_-32px_rgba(15,15,15,0.45)] ring-1 ring-black/10">
+    <div className="overflow-hidden rounded-lg bg-graphite shadow-[0_40px_80px_-32px_rgba(15,15,15,0.45)] ring-1 ring-black/10">
       <div className="flex items-center gap-1.5 bg-ink/90 px-4 py-2.5">
         <span className="size-2.5 rounded-full bg-white/25" />
         <span className="size-2.5 rounded-full bg-white/25" />
@@ -57,7 +57,7 @@ export default async function ProjectPage({ params }: Props) {
     <>
       {/* Hero */}
       <section className="relative isolate overflow-hidden bg-ink text-white">
-        <div className="wrap grid items-center gap-10 pb-14 pt-28 md:grid-cols-2 md:gap-12 md:pb-20 md:pt-40">
+        <div className="wrap grid items-center gap-8 pb-8 pt-20 md:grid-cols-[40%_60%] md:gap-8 md:pb-10 md:pt-24">
           <div className="relative z-10">
             <Link
               href="/work"
@@ -66,15 +66,15 @@ export default async function ProjectPage({ params }: Props) {
               <ArrowLeft className="size-4" />
               Back to work
             </Link>
-            <p className="mt-6 text-fine font-medium uppercase tracking-[0.18em] text-white/45">{p.category}</p>
-            <h1 className="text-headline mt-4 max-w-[16ch] text-balance">
+            <p className="mt-5 text-fine font-medium uppercase tracking-[0.18em] text-white/45">{p.category}</p>
+            <h1 className="text-title mt-3 max-w-[18ch] text-balance">
               <WordReveal text={p.title} />
             </h1>
-            <Reveal as="p" delay={0.4} className="text-copy mt-5 max-w-[46ch] text-white/70">
+            <Reveal as="p" delay={0.4} className="text-copy mt-4 max-w-[46ch] text-white/70">
               {p.summary}
             </Reveal>
             {p.link && (
-              <Reveal delay={0.5} className="mt-8">
+              <Reveal delay={0.5} className="mt-6">
                 <Link
                   href={p.link}
                   className="inline-flex h-12 items-center gap-2 rounded-full bg-gradient-to-r from-brand-pink to-brand-orange px-6 text-[15px] font-medium text-white shadow-[0_12px_34px_-10px_rgba(255,15,106,0.55)] transition-transform duration-300 ease-apple hover:scale-[1.02] active:scale-[0.98]"
@@ -87,7 +87,7 @@ export default async function ProjectPage({ params }: Props) {
           </div>
           <div className="relative">
             {p.heroMockup ? (
-              <div className="relative aspect-[3/2]">
+              <div className="relative aspect-[16/10] md:-mr-8">
                 <div
                   aria-hidden
                   className="pointer-events-none absolute inset-0 -z-10"
@@ -126,14 +126,14 @@ export default async function ProjectPage({ params }: Props) {
       </section>
 
       {/* Overview */}
-      <section className="relative isolate overflow-hidden bg-fog py-16 text-graphite md:py-24">
+      <section className="relative isolate overflow-hidden bg-fog py-10 text-graphite md:py-14">
         <Image
           src="/backgrounds/pink-blobs.png"
           alt=""
           aria-hidden
           fill
           sizes="100vw"
-          className="-z-20 object-cover object-right"
+          className="-z-20 object-cover object-right opacity-60"
           priority
         />
         {/* fade the blobs out over the text side so the pink only shows around the showcase */}
@@ -142,7 +142,7 @@ export default async function ProjectPage({ params }: Props) {
           className="absolute inset-0 -z-10"
           style={{ background: "linear-gradient(to right, var(--color-fog) 34%, transparent 74%)" }}
         />
-        <div className="wrap grid gap-12 md:grid-cols-2 md:gap-16">
+        <div className="wrap grid gap-12 md:grid-cols-[37%_63%] md:items-center md:gap-16">
           <div>
             <SectionLabel num="01">Overview</SectionLabel>
             {p.overview && <h2 className="text-title mt-4 max-w-[18ch] text-balance">{p.overview}</h2>}
@@ -153,7 +153,7 @@ export default async function ProjectPage({ params }: Props) {
                 </Reveal>
               ))}
             </div>
-            <dl className="mt-8 flex flex-wrap gap-x-14 gap-y-5 border-t border-ink/10 pt-6">
+            <dl className="mt-8 grid grid-cols-3 gap-6 border-t border-ink/10 pt-6">
               <div>
                 <dt className="text-fine text-mute">Client</dt>
                 <dd className="mt-1 text-copy">{p.client}</dd>
@@ -169,14 +169,14 @@ export default async function ProjectPage({ params }: Props) {
             </dl>
           </div>
           <Reveal amount={0.2}>
-            <BrowserShot project={p} />
+            <BrowserShot project={p} aspect="aspect-[16/9]" />
             {p.gallery?.length ? (
               <div
                 className="mt-4 grid gap-3"
                 style={{ gridTemplateColumns: `repeat(${Math.min(p.gallery.length, 4)}, minmax(0, 1fr))` }}
               >
                 {p.gallery.map((g, i) => (
-                  <div key={i} className="relative aspect-[4/3] overflow-hidden rounded-lg bg-graphite ring-1 ring-ink/10">
+                  <div key={i} className="relative aspect-[4/3] overflow-hidden rounded-md bg-graphite ring-1 ring-ink/10">
                     <Image src={g} alt="" fill sizes="160px" className="object-cover object-top" />
                   </div>
                 ))}
@@ -188,34 +188,23 @@ export default async function ProjectPage({ params }: Props) {
 
       {/* Challenge / Approach / Results */}
       {hasCaseStudy && (
-        <section className="bg-white py-16 text-graphite md:py-24">
-          <div className="wrap grid items-start gap-12 md:grid-cols-2 md:gap-16">
-            {/* Left: case image with a caption overlay + a soft brand glow */}
+        <section className="bg-white py-10 text-graphite md:py-14">
+          <div className="wrap grid gap-12 md:grid-cols-[57%_43%] md:items-center md:gap-16">
+            {/* Left: case image */}
             <Reveal amount={0.2} className="relative">
-              <div
-                aria-hidden
-                className="pointer-events-none absolute -right-6 -top-8 size-64 rounded-full opacity-70 blur-3xl"
-                style={{
-                  background: "radial-gradient(closest-side, rgba(255,60,120,0.5), rgba(255,140,90,0.3) 55%, transparent 75%)",
-                }}
-              />
-              <div className="relative overflow-hidden rounded-3xl ring-1 ring-black/10 shadow-[0_40px_80px_-32px_rgba(15,15,15,0.4)]">
+              <div className="relative overflow-hidden rounded-lg ring-1 ring-black/10 shadow-[0_40px_80px_-32px_rgba(15,15,15,0.4)]">
                 <CoverArt
                   hue={p.hue}
                   image={p.caseImage ?? p.gallery?.[0] ?? p.image}
                   label={p.client || p.title}
-                  className="aspect-[4/3]"
+                  className="aspect-[16/10]"
                 />
-                {p.caseCaption && (
-                  <div className="absolute left-5 top-5 max-w-[62%] rounded-2xl bg-black/30 p-5 backdrop-blur-md ring-1 ring-white/10">
-                    <p className="text-title font-semibold leading-tight text-white">{p.caseCaption}</p>
-                  </div>
-                )}
+
               </div>
             </Reveal>
 
             {/* Right: 02 / 03 / 04 stacked */}
-            <div className="space-y-9">
+            <div className="space-y-6">
               {p.challenge && (
                 <Reveal amount={0.3}>
                   <SectionLabel num="02">The challenge</SectionLabel>

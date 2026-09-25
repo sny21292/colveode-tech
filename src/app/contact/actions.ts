@@ -2,6 +2,7 @@
 
 import { Resend } from "resend";
 import { site } from "@/content/site";
+import { saveContactSubmission } from "@/lib/db";
 
 export type ContactValues = { name: string; email: string; company: string; budget: string; message: string };
 
@@ -36,12 +37,17 @@ export async function sendEnquiry(_prev: ContactState, formData: FormData): Prom
   if (message.length < 20) errors.message = "Tell us a little more, at least a sentence or two.";
   if (Object.keys(errors).length) return { status: "error", errors, values };
 
+  // Persist to Postgres first (best-effort — never blocks the visitor).
+  const saved = await saveContactSubmission(values);
+
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_TO_EMAIL ?? site.email;
   const from = process.env.CONTACT_FROM_EMAIL ?? `Cloveode Website <onboarding@resend.dev>`;
 
   if (!apiKey) {
-    console.warn("[contact] RESEND_API_KEY missing; enquiry not sent", { name, email });
+    // No email configured: still a success if the enquiry landed in the database.
+    if (saved) return { status: "success" };
+    console.warn("[contact] RESEND_API_KEY and DATABASE_URL both missing; enquiry not captured", { name, email });
     return {
       status: "error",
       values,
@@ -71,6 +77,8 @@ export async function sendEnquiry(_prev: ContactState, formData: FormData): Prom
     return { status: "success" };
   } catch (err) {
     console.error("[contact] send failed", err);
+    // The enquiry is safe in the database even though the email didn't go out.
+    if (saved) return { status: "success" };
     return {
       status: "error",
       values,

@@ -3,15 +3,13 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  // Keep the Postgres driver out of the bundle; it needs Node built-ins.
+  serverExternalPackages: ["pg"],
   images: {
     formats: ["image/avif", "image/webp"],
   },
   async redirects() {
-    // Routes from the previous cloveode.com build that no longer exist.
-    return [
-      { source: "/blog", destination: "/", permanent: true },
-      { source: "/blog/:path*", destination: "/", permanent: true },
-    ];
+    return [];
   },
   async headers() {
     return [

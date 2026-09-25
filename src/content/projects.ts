@@ -43,6 +43,10 @@ export type Project = {
   caseCaption?: string;
   /** detail page hero: a transparent device-mockup PNG (replaces the framed screenshot) */
   heroMockup?: string;
+  /** home featured card: the client’s own short brand tagline */
+  tagline?: string;
+  /** home featured card: location / “since” line */
+  location?: string;
 };
 
 export const projects: Project[] = [
@@ -78,6 +82,8 @@ export const projects: Project[] = [
     caseImage: "/work/davidas-showcase.png",
     caseCaption: "Elegance in every detail",
     heroMockup: "/work/davidas-mockup.png",
+    tagline: "The fusion of art, craftsmanship and technology.",
+    location: "Greensboro, NC — Since 1998",
   },
   {
     slug: "vshred-shopify-upsells",

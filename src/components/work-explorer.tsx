@@ -7,7 +7,7 @@ import { motion } from "motion/react";
 import { CoverArt } from "@/components/cover-art";
 import type { Project } from "@/content/projects";
 
-const GROUP_ORDER = [
+export const GROUP_ORDER = [
   "Web development",
   "E-commerce",
   "Blockchain",
@@ -17,7 +17,7 @@ const GROUP_ORDER = [
 ] as const;
 
 /** Bucket a project's free-text category into one of the filter groups. */
-function groupOf(category: string): (typeof GROUP_ORDER)[number] {
+export function groupOf(category: string): (typeof GROUP_ORDER)[number] {
   const c = category.toLowerCase();
   if (c.includes("blockchain")) return "Blockchain";
   if (c.includes("e-commerce") || c.includes("shopify") || c.includes("woocommerce")) return "E-commerce";
@@ -32,7 +32,7 @@ export function WorkCard({ project }: { project: Project }) {
   return (
     <Link
       href={`/work/${project.slug}`}
-      className="group flex flex-col overflow-hidden rounded-3xl bg-white ring-1 ring-ink/[0.06] shadow-[0_1px_2px_rgba(15,15,15,0.04)] transition-[transform,box-shadow] duration-500 ease-apple hover:-translate-y-1 hover:shadow-[0_24px_48px_-20px_rgba(15,15,15,0.22)]"
+      className="group flex flex-col overflow-hidden rounded-lg bg-white ring-1 ring-ink/[0.06] shadow-[0_1px_2px_rgba(15,15,15,0.04)] transition-[transform,box-shadow] duration-500 ease-apple hover:-translate-y-1 hover:shadow-[0_24px_48px_-20px_rgba(15,15,15,0.22)]"
     >
       <div className="aspect-[16/10] overflow-hidden">
         <CoverArt hue={project.hue} image={project.image} label={project.client || project.title} className="size-full" />
