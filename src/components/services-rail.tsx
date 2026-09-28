@@ -56,7 +56,7 @@ export function ServicesRail() {
               >
                 <div className="relative mb-6 aspect-[4/3] overflow-hidden rounded-2xl bg-fog ring-1 ring-ink/[0.04]">
                   <Image
-                    src={`/services/icon3d/${s.slug}.png`}
+                    src={`/services/icon/${s.slug}.png`}
                     alt=""
                     fill
                     sizes="(max-width:640px) 90vw, (max-width:1024px) 45vw, 22vw"
