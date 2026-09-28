@@ -51,7 +51,7 @@ export function WordReveal({
   return (
     <span className={className} aria-label={text} role="text">
       {words.map((w, i) => (
-        <span key={i} className="inline-block overflow-hidden pb-[0.08em] -mb-[0.08em] align-bottom">
+        <span key={i} className="inline-block overflow-hidden pb-[0.25em] -mb-[0.25em] align-bottom">
           <motion.span
             className="inline-block will-change-transform"
             initial={reduced ? false : { y: "110%", opacity: 0 }}

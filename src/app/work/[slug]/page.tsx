@@ -8,6 +8,7 @@ import { WordReveal, Reveal } from "@/components/reveal";
 import { Cta } from "@/components/cta";
 import { CoverArt } from "@/components/cover-art";
 import { WorkCard } from "@/components/work-explorer";
+import { Zoom } from "@/components/zoom";
 import { getProject, projects, type Project } from "@/content/projects";
 
 export function generateStaticParams() {
@@ -57,7 +58,7 @@ export default async function ProjectPage({ params }: Props) {
     <>
       {/* Hero */}
       <section className="relative isolate overflow-hidden bg-ink text-white">
-        <div className="wrap grid items-center gap-8 pb-8 pt-20 md:grid-cols-[40%_60%] md:gap-8 md:pb-10 md:pt-24">
+        <div className="wrap grid items-center gap-8 pb-8 pt-20 md:grid-cols-2 md:gap-12 md:pb-10 md:pt-24">
           <div className="relative z-10">
             <Link
               href="/work"
@@ -142,7 +143,7 @@ export default async function ProjectPage({ params }: Props) {
           className="absolute inset-0 -z-10"
           style={{ background: "linear-gradient(to right, var(--color-fog) 34%, transparent 74%)" }}
         />
-        <div className="wrap grid gap-12 md:grid-cols-[37%_63%] md:items-center md:gap-16">
+        <div className="wrap grid gap-12 md:grid-cols-[45%_55%] md:items-center md:gap-16">
           <div>
             <SectionLabel num="01">Overview</SectionLabel>
             {p.overview && <h2 className="text-title mt-4 max-w-[18ch] text-balance">{p.overview}</h2>}
@@ -169,16 +170,17 @@ export default async function ProjectPage({ params }: Props) {
             </dl>
           </div>
           <Reveal amount={0.2}>
-            <BrowserShot project={p} aspect="aspect-[16/9]" />
+            <Zoom src={p.image}>
+              <BrowserShot project={p} aspect="aspect-[16/9]" />
+            </Zoom>
             {p.gallery?.length ? (
-              <div
-                className="mt-4 grid gap-3"
-                style={{ gridTemplateColumns: `repeat(${Math.min(p.gallery.length, 4)}, minmax(0, 1fr))` }}
-              >
+              <div className="mt-3 grid grid-cols-3 gap-3">
                 {p.gallery.map((g, i) => (
-                  <div key={i} className="relative aspect-[4/3] overflow-hidden rounded-md bg-graphite ring-1 ring-ink/10">
-                    <Image src={g} alt="" fill sizes="160px" className="object-cover object-top" />
-                  </div>
+                  <Zoom key={i} src={g}>
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-md bg-graphite ring-1 ring-ink/10 transition-[transform,box-shadow] duration-300 ease-apple group-hover:-translate-y-0.5 group-hover:shadow-lg">
+                      <Image src={g} alt="" fill sizes="220px" className="object-cover object-top" />
+                    </div>
+                  </Zoom>
                 ))}
               </div>
             ) : null}
@@ -192,15 +194,16 @@ export default async function ProjectPage({ params }: Props) {
           <div className="wrap grid gap-12 md:grid-cols-[57%_43%] md:items-center md:gap-16">
             {/* Left: case image */}
             <Reveal amount={0.2} className="relative">
-              <div className="relative overflow-hidden rounded-lg ring-1 ring-black/10 shadow-[0_40px_80px_-32px_rgba(15,15,15,0.4)]">
-                <CoverArt
-                  hue={p.hue}
-                  image={p.caseImage ?? p.gallery?.[0] ?? p.image}
-                  label={p.client || p.title}
-                  className="aspect-[16/10]"
-                />
-
-              </div>
+              <Zoom src={p.caseImage ?? p.gallery?.[0] ?? p.image}>
+                <div className="relative overflow-hidden rounded-lg ring-1 ring-black/10 shadow-[0_40px_80px_-32px_rgba(15,15,15,0.4)]">
+                  <CoverArt
+                    hue={p.hue}
+                    image={p.caseImage ?? p.gallery?.[0] ?? p.image}
+                    label={p.client || p.title}
+                    className="aspect-[16/10]"
+                  />
+                </div>
+              </Zoom>
             </Reveal>
 
             {/* Right: 02 / 03 / 04 stacked */}
