@@ -9,6 +9,7 @@ import {
   siEthers, siChainlink, siIpfs, siRust,
   siGoogletagmanager, siSemrush, siLighthouse, siCloudflare,
   siHubspot, siAirtable, siFirebase, siSupabase,
+  siJavascript, siBootstrap, siJquery, siHtml5, siCss, siElementor,
 } from "simple-icons";
 
 type Icon = { title: string; hex: string; path: string };
@@ -61,30 +62,75 @@ const ICONS: Record<string, Icon> = {
   "Airtable": siAirtable,
   "Firebase": siFirebase,
   "Supabase": siSupabase,
+  "JavaScript": siJavascript,
+  "Bootstrap": siBootstrap,
+  "jQuery": siJquery,
+  "HTML": siHtml5,
+  "CSS": siCss,
+  "Elementor": siElementor,
 };
 
-function BrandMark({ icon }: { icon: Icon }) {
+function BrandMark({ icon, sm }: { icon: Icon; sm?: boolean }) {
   // Keep near-black brand colours legible on a white chip.
   const color = `#${icon.hex}`;
   return (
-    <svg viewBox="0 0 24 24" role="img" aria-hidden className="size-[22px] shrink-0" fill={color}>
+    <svg viewBox="0 0 24 24" role="img" aria-hidden className={`${sm ? "size-4" : "size-[22px]"} shrink-0`} fill={color}>
       <path d={icon.path} />
     </svg>
   );
 }
 
-export function TechChip({ name }: { name: string }) {
-  const icon = ICONS[name];
+/** “Technology stack” row: a soft-tinted circle icon with the name below, per tech. */
+export function TechStack({ tech }: { tech: string[] }) {
   return (
-    <div className="flex items-center gap-2.5 rounded-full bg-white px-5 py-3 ring-1 ring-ink/[0.06]">
+    <div className="flex flex-wrap gap-y-7">
+      {tech.map((name, i) => {
+        const icon = ICONS[name];
+        const hex = icon ? `#${icon.hex}` : null;
+        return (
+          <div
+            key={name}
+            className={`flex min-w-[4.5rem] flex-1 basis-[5rem] flex-col items-center gap-2.5 px-2 ${
+              i > 0 ? "border-l border-ink/10" : ""
+            }`}
+          >
+            <div
+              className="flex size-14 items-center justify-center rounded-full ring-1 ring-ink/[0.04]"
+              style={{ background: hex ? `${hex}1f` : "rgba(17,17,17,0.05)" }}
+            >
+              {icon ? (
+                <svg viewBox="0 0 24 24" role="img" aria-hidden className="size-7" fill={hex!}>
+                  <path d={icon.path} />
+                </svg>
+              ) : (
+                <span className="text-base font-semibold text-graphite">{name.charAt(0)}</span>
+              )}
+            </div>
+            <span className="text-fine font-medium text-graphite">{name}</span>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+export function TechChip({ name, size = "md" }: { name: string; size?: "sm" | "md" }) {
+  const icon = ICONS[name];
+  const sm = size === "sm";
+  return (
+    <div className={`flex items-center rounded-full bg-white ring-1 ring-ink/[0.06] ${sm ? "gap-2 px-3 py-1.5" : "gap-2.5 px-5 py-3"}`}>
       {icon ? (
-        <BrandMark icon={icon} />
+        <BrandMark icon={icon} sm={sm} />
       ) : (
-        <span className="flex size-[22px] shrink-0 items-center justify-center rounded-full bg-ink/[0.07] text-[11px] font-semibold text-graphite">
+        <span
+          className={`flex shrink-0 items-center justify-center rounded-full bg-ink/[0.07] font-semibold text-graphite ${
+            sm ? "size-4 text-[10px]" : "size-[22px] text-[11px]"
+          }`}
+        >
           {name.charAt(0)}
         </span>
       )}
-      <span className="truncate text-copy font-medium">{name}</span>
+      <span className={`truncate font-medium ${sm ? "text-[13px]" : "text-copy"}`}>{name}</span>
     </div>
   );
 }

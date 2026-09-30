@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { Plus, Minus, Clock, Briefcase, Box, ShieldCheck, Headphones, Monitor, type LucideIcon } from "lucide-react";
 import { faq } from "@/content/faq";
 import { Reveal } from "@/components/reveal";
+import { Eyebrow } from "@/components/eyebrow";
 
 const ICONS: LucideIcon[] = [Clock, Briefcase, Box, ShieldCheck, Headphones, Monitor];
 
@@ -18,13 +19,10 @@ export function Faq() {
         {/* Left: intro + artwork */}
         <div>
           <Reveal className="mb-5">
-            <span className="flex items-center gap-3 text-fine font-medium uppercase tracking-[0.16em] text-mute">
-              <span aria-hidden className="h-px w-8 bg-brand-pink" />
-              FAQ
-            </span>
+            <Eyebrow>FAQ</Eyebrow>
           </Reveal>
           <Reveal as="h2" delay={0.05} className="text-headline max-w-[12ch] text-balance">
-            Questions we hear <span className="text-brand-pink">most.</span>
+            Questions we hear <span className="brand-text">most.</span>
           </Reveal>
           <Reveal as="p" delay={0.12} className="text-copy mt-5 max-w-[42ch] text-mute">
             Quick answers to common questions about our services, process and support. Still have a question?

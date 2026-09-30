@@ -22,7 +22,7 @@ export function Hero() {
     <section ref={ref} className="relative isolate min-h-[100svh] overflow-hidden bg-ink text-white">
       <motion.div
         style={reduced ? undefined : { y: blobY, scale: blobScale }}
-        className="pointer-events-none absolute inset-x-0 bottom-[-30%] top-[46%] md:top-[40%]"
+        className="pointer-events-none absolute inset-x-0 bottom-[-30%] top-0"
       >
         <Metaballs className="size-full" />
       </motion.div>

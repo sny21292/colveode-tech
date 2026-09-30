@@ -7,16 +7,20 @@ type Tone = "light" | "dark";
 const pill =
   "inline-flex items-center justify-center gap-2 rounded-full px-5 h-11 text-[15px] font-medium transition-[background-color,color,transform] duration-300 ease-apple active:scale-[0.98]";
 
+/** The one primary button style used across the whole site. */
+const gradient =
+  "bg-gradient-to-r from-brand-pink to-brand-orange text-white shadow-[0_12px_34px_-10px_rgba(255,15,106,0.55)] hover:scale-[1.02]";
+
 const tones: Record<Tone, { solid: string; ghost: string; link: string }> = {
   // on dark backgrounds
   dark: {
-    solid: "bg-white text-ink hover:bg-white/90",
+    solid: gradient,
     ghost: "bg-white/10 text-white hover:bg-white/15 backdrop-blur",
     link: "text-white hover:text-white/80",
   },
   // on light backgrounds
   light: {
-    solid: "bg-ink text-white hover:bg-graphite",
+    solid: gradient,
     ghost: "bg-ink/6 text-ink hover:bg-ink/10",
     link: "text-ink hover:text-graphite/70",
   },

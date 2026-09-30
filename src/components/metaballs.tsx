@@ -114,7 +114,7 @@ export function Metaballs({ className = "", intensity = 1 }: Props) {
       sy: 0.14 + 0.06 * ((i + 1) % 3),
       px: i * 1.3,
       py: i * 0.9 + 1.1,
-      r: 0.17 + 0.07 * Math.abs(Math.sin(i * 2.1)),
+      r: (0.17 + 0.07 * Math.abs(Math.sin(i * 2.1))) * 0.6,
     }));
 
     const target = { x: 0, y: 0, active: false };
@@ -174,13 +174,13 @@ export function Metaballs({ className = "", intensity = 1 }: Props) {
       pointer.x += (tx - pointer.x) * Math.min(1, dt * 4);
       pointer.y += (ty - pointer.y) * Math.min(1, dt * 4);
       // the pointer ball only exists while a pointer is over the page
-      pointer.r += ((target.active ? 0.12 : 0) - pointer.r) * Math.min(1, dt * 3);
+      pointer.r += ((target.active ? 0.072 : 0) - pointer.r) * Math.min(1, dt * 3);
 
       for (let i = 0; i < BALLS; i++) {
         const s = seeds[i];
         const tt = staticFrame ? 0 : t;
         let x = s.ax * Math.sin(tt * s.sx + s.px) * (i % 2 ? 1 : -1);
-        let y = -0.15 + s.ay * Math.sin(tt * s.sy + s.py);
+        let y = -0.4 + s.ay * Math.sin(tt * s.sy + s.py);
         // gentle attraction toward the pointer so the cluster leans in
         x += (pointer.x - x) * 0.05;
         y += (pointer.y - y) * 0.05;

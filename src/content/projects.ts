@@ -47,11 +47,14 @@ export type Project = {
   tagline?: string;
   /** home featured card: location / “since” line */
   location?: string;
+  /** detail page: technologies used, rendered as brand-logo chips */
+  tech?: string[];
 };
 
 export const projects: Project[] = [
   {
     slug: "davidas-jewelry-replatform",
+    tech: ["Next.js","React","TypeScript","Node.js","GitHub","Supabase","Vercel"],
     title: "Rebuilding a jewelry brand’s site for search visibility",
     client: "Davidas Design Concepts",
     category: "Web development",
@@ -60,7 +63,7 @@ export const projects: Project[] = [
     year: 2026,
     hue: 45,
     featured: true,
-    image: "/work/davidas.png",
+    image: "/work/davidas-home.jpg",
     link: "https://davidas.com",
     overview: "A premium jewelry website with a stronger online presence.",
     service: "Web development, SEO",
@@ -72,12 +75,6 @@ export const projects: Project[] = [
       "The existing site was a hash-routed single-page app, so product URLs like /jewelry#product/210-104 were invisible to search engines — none of the 78 products could rank, and the catalogue was hard for customers to navigate and explore.",
     approach:
       "I rebuilt the storefront on Next.js 15 with statically-generated routes that mirror the store’s taxonomy (category → subcategory → product), each with its own metadata, canonical tags and JSON-LD, plus an auto-generated sitemap. I also ported the PHP forms to serverless functions and preserved every legacy URL, so existing links and rankings carried over cleanly.",
-    // NOTE: placeholder figures from the design mockup — replace with real, verified numbers.
-    results: [
-      { value: "120%", label: "Increase in organic traffic" },
-      { value: "3×", label: "Higher product-page engagement" },
-      { value: "60%", label: "More inquiries from the website" },
-    ],
     gallery: ["/work/davidas-showcase.png", "/work/davidas-jewelry.png", "/work/davidas-gems.png"],
     caseImage: "/work/davidas-showcase.png",
     caseCaption: "Elegance in every detail",
@@ -87,6 +84,7 @@ export const projects: Project[] = [
   },
   {
     slug: "vshred-shopify-upsells",
+    tech: ["Shopify","JavaScript"],
     title: "Post-purchase upsell funnel and free-trial subscription for a fitness brand",
     client: "V Shred",
     category: "Shopify · E-commerce",
@@ -113,6 +111,7 @@ export const projects: Project[] = [
   },
   {
     slug: "turnoffroad-ai-automation",
+    tech: ["Shopify","Node.js","Python"],
     title: "AI tooling and store automation for an off-road parts retailer",
     client: "Turn Offroad",
     category: "AI / Automation",
@@ -139,6 +138,7 @@ export const projects: Project[] = [
   },
   {
     slug: "taste-marketplace",
+    tech: ["WordPress","WooCommerce","PHP","REST","Plugin"],
     title: "Taste Marketplace — food & wine experiences",
     client: "Taste Marketplace",
     category: "WordPress / E-commerce",
@@ -164,6 +164,7 @@ export const projects: Project[] = [
   },
   {
     slug: "aged-care-cost-calculator",
+    tech: ["WordPress","Elementor","HTML","CSS","Plugin"],
     title: "Rebuilding an aged care cost calculator",
     client: "Aged Care Solutions",
     category: "Web development",
@@ -189,6 +190,7 @@ export const projects: Project[] = [
   },
   {
     slug: "drt-motorsports-storefront",
+    tech: ["Shopify","JavaScript"],
     title: "Custom mega menu & customer-care flow for a powersports retailer",
     client: "DRT Motorsports",
     category: "Shopify · E-commerce",
@@ -215,6 +217,7 @@ export const projects: Project[] = [
 
   {
     slug: "wordpress-multisite-woocommerce",
+    tech: ["WordPress","WooCommerce","PHP","jQuery"],
     title: "Building and updating WooCommerce stores across multiple brands",
     client: "Multiple WordPress brands",
     category: "WordPress / E-commerce",
@@ -240,6 +243,7 @@ export const projects: Project[] = [
   },
   {
     slug: "creatiosoft-service-pages",
+    tech: ["WordPress","JavaScript","HTML","CSS","REST"],
     title: "Responsive PHP service pages with lead-capture forms",
     client: "Creatiosoft",
     category: "Web development",
@@ -270,6 +274,7 @@ export const projects: Project[] = [
   },
   {
     slug: "ai-chat-assist-plugin",
+    tech: ["WordPress","PHP","jQuery"],
     title: "AI Chat Assist — a WordPress chatbot plugin",
     client: "AI Chat Assist",
     category: "WordPress plugin",
@@ -295,6 +300,7 @@ export const projects: Project[] = [
 
   {
     slug: "nexus-clinic-wordpress",
+    tech: ["WordPress","PHP","Elementor","HTML","CSS","REST","Plugin"],
     title: "Landing pages, blogs and new pages for an aesthetic clinic",
     client: "Nexus Clinic",
     category: "WordPress / Web development",
@@ -320,6 +326,7 @@ export const projects: Project[] = [
   },
   {
     slug: "launch-laundry",
+    tech: ["WordPress","PHP","Elementor","HTML","CSS","REST","Plugin"],
     title: "A full website for a commercial laundry supplier",
     client: "Launch Laundry",
     category: "WordPress / Web development",
@@ -345,6 +352,7 @@ export const projects: Project[] = [
   },
   {
     slug: "100x-brokerage-trading-platform",
+    tech: ["Laravel","PHP","HTML","CSS","Bootstrap"],
     title: "A Laravel trading platform for crypto, stocks and forex",
     client: "100x Brokerage",
     category: "Backend / Full-stack development",
@@ -368,6 +376,7 @@ export const projects: Project[] = [
   },
   {
     slug: "ebodyboarding-shopify-revamp",
+    tech: ["Shopify","JavaScript"],
     title: "Shopify store revamp for a bodyboarding retailer",
     client: "eBodyboarding.com",
     category: "Shopify · E-commerce",
@@ -393,6 +402,7 @@ export const projects: Project[] = [
 
   {
     slug: "klnk-tv",
+    tech: ["Next.js","React","TypeScript"],
     title: "A streaming-style platform frontend, design to production",
     client: "KLNK.tv",
     category: "Web development",
@@ -417,6 +427,7 @@ export const projects: Project[] = [
   },
   {
     slug: "tourpublish",
+    tech: ["Next.js","React","TypeScript"],
     title: "A tour-publishing app with social integrations",
     client: "TourPublish",
     category: "Web development",
@@ -441,6 +452,7 @@ export const projects: Project[] = [
   },
   {
     slug: "venovox",
+    tech: ["WordPress","PHP"],
     title: "A multilingual corporate site built from scratch",
     client: "Venovox",
     category: "Web development",
@@ -465,6 +477,7 @@ export const projects: Project[] = [
   },
   {
     slug: "furnishings",
+    tech: ["Next.js","React","TypeScript"],
     title: "A flooring & furnishings store built from scratch",
     client: "Furnishings",
     category: "Web development",
@@ -489,6 +502,7 @@ export const projects: Project[] = [
   },
   {
     slug: "pistil",
+    tech: ["Next.js","React","TypeScript"],
     title: "Product pages and an API-driven frontend for Pistil",
     client: "Pistil",
     category: "Web development",
@@ -513,6 +527,7 @@ export const projects: Project[] = [
   },
   {
     slug: "daiki-media",
+    tech: ["Next.js","React","TypeScript"],
     title: "New pages and SEO for a media agency site",
     client: "Daiki Media",
     category: "Web development",
@@ -537,6 +552,7 @@ export const projects: Project[] = [
   },
   {
     slug: "gulf-ticket",
+    tech: ["React","TypeScript"],
     title: "UI and UX refresh for a ticketing website",
     client: "Gulf Ticket",
     category: "Web development",
@@ -561,6 +577,7 @@ export const projects: Project[] = [
   },
   {
     slug: "shaanvi-tours",
+    tech: ["Next.js","React","TypeScript"],
     title: "A travel website with a working contact flow",
     client: "Shaanvi Tours",
     category: "Web development",
@@ -585,6 +602,7 @@ export const projects: Project[] = [
   },
   {
     slug: "habebe-lounge",
+    tech: ["Next.js","React","TypeScript"],
     title: "A responsive frontend for a lounge brand",
     client: "Habebe Lounge",
     category: "Web development",
@@ -607,6 +625,7 @@ export const projects: Project[] = [
   },
   {
     slug: "silent-aces",
+    tech: ["WordPress","PHP","HTML","CSS"],
     title: "A poker-platform website in WordPress and core PHP",
     client: "Silent Aces",
     category: "WordPress / Web development",
@@ -632,6 +651,7 @@ export const projects: Project[] = [
   },
   {
     slug: "gretrix-lending-platform",
+    tech: ["Laravel","PHP","MySQL"],
     title: "Automating a business-lending platform end to end",
     client: "Gretrix",
     category: "Web development",
@@ -659,6 +679,7 @@ export const projects: Project[] = [
   },
   {
     slug: "sydney-props-rental-integration",
+    tech: ["WordPress","WooCommerce","PHP"],
     title: "Connecting a hire store to live rental inventory",
     client: "Sydney Props",
     category: "WordPress / E-commerce",

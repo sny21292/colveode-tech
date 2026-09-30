@@ -9,6 +9,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { WordReveal, Reveal } from "@/components/reveal";
+import { Eyebrow } from "@/components/eyebrow";
 import { Cta } from "@/components/cta";
 import { TechChip } from "@/components/tech-icons";
 import { getService, services } from "@/content/services";
@@ -69,15 +70,6 @@ const BUILD_META: Record<string, { icon: LucideIcon; desc: string }> = {
   "Cloud and infrastructure advice": { icon: Server, desc: "Right-sized, secure infrastructure recommendations for your stage." },
   "Team training and handover": { icon: Users, desc: "Documentation and training so your team owns it with confidence." },
 };
-
-function Eyebrow({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
-  return (
-    <p className={`flex items-center gap-3 text-fine font-medium uppercase tracking-[0.16em] ${dark ? "text-white/45" : "text-mute"}`}>
-      <span className="h-px w-8 bg-brand-pink" />
-      {children}
-    </p>
-  );
-}
 
 export default async function ServicePage({ params }: Props) {
   const { slug } = await params;

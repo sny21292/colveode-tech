@@ -8,6 +8,7 @@ import { WordReveal, Reveal } from "@/components/reveal";
 import { Cta } from "@/components/cta";
 import { CoverArt } from "@/components/cover-art";
 import { WorkCard } from "@/components/work-explorer";
+import { TechStack } from "@/components/tech-icons";
 import { Zoom } from "@/components/zoom";
 import { getProject, projects, type Project } from "@/content/projects";
 
@@ -38,10 +39,18 @@ function BrowserShot({ project, aspect = "aspect-[16/10]" }: { project: Project;
   );
 }
 
-function SectionLabel({ num, children }: { num: string; children: ReactNode }) {
+function SectionLabel({ num, children, heading = false }: { num: string; children: ReactNode; heading?: boolean }) {
+  if (heading) {
+    return (
+      <h3 className="flex items-baseline gap-3.5 text-[1.6rem] font-semibold leading-snug tracking-[-0.02em] text-graphite">
+        <span className="text-[1.6rem] font-semibold text-brand-pink">{num}</span>
+        {children}
+      </h3>
+    );
+  }
   return (
-    <p className="text-fine font-medium text-graphite">
-      <span className="mr-3 text-brand-pink">{num}</span>
+    <p className="flex items-baseline gap-3.5 text-[1.05rem] font-medium text-graphite">
+      <span className="text-[1.35rem] font-semibold text-brand-pink">{num}</span>
       {children}
     </p>
   );
@@ -68,7 +77,7 @@ export default async function ProjectPage({ params }: Props) {
               Back to work
             </Link>
             <p className="mt-5 text-fine font-medium uppercase tracking-[0.18em] text-white/45">{p.category}</p>
-            <h1 className="text-title mt-3 max-w-[18ch] text-balance">
+            <h1 className="text-title mt-3 max-w-[24ch] text-balance">
               <WordReveal text={p.title} />
             </h1>
             <Reveal as="p" delay={0.4} className="text-copy mt-4 max-w-[46ch] text-white/70">
@@ -168,6 +177,20 @@ export default async function ProjectPage({ params }: Props) {
                 <dd className="mt-1 text-copy">{p.service ?? p.category}</dd>
               </div>
             </dl>
+            {p.tech?.length ? (
+              <div className="mt-9">
+                <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                  <span className="flex items-center gap-3 text-fine font-medium uppercase tracking-[0.16em] text-graphite">
+                    <span aria-hidden className="h-px w-8 bg-brand-pink" />
+                    Technology stack
+                  </span>
+                  <span className="text-fine text-mute">Core technologies used to build this project.</span>
+                </div>
+                <div className="mt-7">
+                  <TechStack tech={p.tech} />
+                </div>
+              </div>
+            ) : null}
           </div>
           <Reveal amount={0.2}>
             <Zoom src={p.image}>
@@ -210,19 +233,19 @@ export default async function ProjectPage({ params }: Props) {
             <div className="space-y-6">
               {p.challenge && (
                 <Reveal amount={0.3}>
-                  <SectionLabel num="02">The challenge</SectionLabel>
-                  <p className="mt-3 max-w-[46ch] text-copy text-mute">{p.challenge}</p>
+                  <SectionLabel num="02" heading>The challenge</SectionLabel>
+                  <p className="mt-4 max-w-[46ch] text-copy text-mute">{p.challenge}</p>
                 </Reveal>
               )}
               {p.approach && (
                 <Reveal amount={0.3}>
-                  <SectionLabel num="03">Our approach</SectionLabel>
-                  <p className="mt-3 max-w-[46ch] text-copy text-mute">{p.approach}</p>
+                  <SectionLabel num="03" heading>Our approach</SectionLabel>
+                  <p className="mt-4 max-w-[46ch] text-copy text-mute">{p.approach}</p>
                 </Reveal>
               )}
               {p.results?.length ? (
                 <Reveal amount={0.3}>
-                  <SectionLabel num="04">The results</SectionLabel>
+                  <SectionLabel num="04" heading>The results</SectionLabel>
                   <div className="mt-5 grid gap-4 sm:grid-cols-3">
                     {p.results.map((r) => (
                       <div key={r.label} className="rounded-2xl bg-fog p-5 ring-1 ring-ink/[0.06]">

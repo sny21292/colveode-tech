@@ -30,7 +30,7 @@ export default function BlogPage() {
 
         <div className="wrap relative">
           <Reveal as="h1" delay={0.08} className="text-headline max-w-[16ch] text-balance">
-            <span className="text-brand-pink">Blog</span>  posts
+            <span className="brand-text">Blog</span>  posts
           </Reveal>
           <Reveal as="p" delay={0.16} className="text-lede mt-5 max-w-[40ch] text-white/70">
             Notes on web development, blockchain, APIs and SaaS from the Cloveode team.

@@ -23,17 +23,17 @@ export function Process() {
   });
 
   return (
-    <section className="bg-ink py-24 text-white md:py-32">
+    <section className="bg-ink py-20 text-white md:py-24">
       <div className="wrap">
         <Reveal as="h2" className="text-headline max-w-[18ch] text-balance">
           How a project moves from idea to launch.
         </Reveal>
       </div>
 
-      <div ref={ref} className="wrap mt-16 grid gap-16 md:grid-cols-2 md:gap-24">
+      <div ref={ref} className="wrap mt-10 grid gap-10 md:grid-cols-2 md:gap-20">
         {/* pinned column */}
         <div className="relative hidden md:block">
-          <div className="sticky top-[30vh]">
+          <div className="sticky top-[34vh]">
             <div className="relative h-[8rem] overflow-hidden">
               {process.map((step, i) => (
                 <motion.div
@@ -64,7 +64,7 @@ export function Process() {
         {/* scrolling steps */}
         <ol className="flex flex-col">
           {process.map((step, i) => (
-            <li key={step.title} className="flex min-h-[50vh] flex-col justify-center border-t border-white/10 py-12 first:border-t-0 md:min-h-[60vh]">
+            <li key={step.title} className="flex min-h-[34vh] flex-col justify-center border-t border-white/10 py-8 first:border-t-0 md:min-h-[42vh]">
               <div className="flex items-baseline gap-4 md:hidden">
                 <span className="brand-text text-6xl font-semibold leading-none tracking-[-0.05em] tabular-nums">
                   {i + 1}

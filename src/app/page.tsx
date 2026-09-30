@@ -17,11 +17,11 @@ export default function Home() {
         Cloveode is a software studio in the Himalayan foothills. We design and engineer websites, online
         stores, blockchain systems and custom software for companies that want it done properly.
       </Statement>
+      <TechMarquee />
       <ServicesRail />
       <Process />
       <WorkGrid projects={featuredProjects} />
       <Figures />
-      <TechMarquee />
       <Faq />
       <Cta />
     </>

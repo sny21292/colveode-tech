@@ -73,7 +73,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={pending}
-          className="inline-flex h-12 items-center gap-2 rounded-full bg-gradient-to-r from-ink to-brand-pink px-6 text-[15px] font-medium text-white shadow-[0_12px_30px_-12px_rgba(255,15,106,0.55)] transition-transform duration-300 ease-apple hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60"
+          className="inline-flex h-12 items-center gap-2 rounded-full bg-gradient-to-r from-brand-pink to-brand-orange px-6 text-[15px] font-medium text-white shadow-[0_12px_34px_-10px_rgba(255,15,106,0.55)] transition-transform duration-300 ease-apple hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60"
         >
           {pending ? "Sending…" : "Send message"}
           <ArrowRight className="size-4" />
