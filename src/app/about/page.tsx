@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import type { ReactNode } from "react";
 import { ArrowRight, Target, MessageCircle, Code2, Users, Gem, TrendingUp, Globe } from "lucide-react";
 import { WordReveal, Reveal } from "@/components/reveal";
+import { Eyebrow } from "@/components/eyebrow";
 import { Cta } from "@/components/cta";
 import { site } from "@/content/site";
 
@@ -31,15 +31,6 @@ const approach = [
   { icon: TrendingUp, title: "Long-term thinking", text: "We build for what you need today and where you want to be tomorrow." },
   { icon: Globe, title: "Clients everywhere", text: "Local to the Himalayas, working with businesses around the world." },
 ];
-
-function Eyebrow({ children, dark = false }: { children: ReactNode; dark?: boolean }) {
-  return (
-    <p className={`flex items-center gap-3 text-fine font-medium uppercase tracking-[0.16em] ${dark ? "text-white/45" : "text-mute"}`}>
-      <span className="h-px w-8 bg-brand-pink" />
-      {children}
-    </p>
-  );
-}
 
 export default function AboutTwoPage() {
   return (

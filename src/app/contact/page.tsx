@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal, WordReveal } from "@/components/reveal";
+import { Eyebrow } from "@/components/eyebrow";
 import { ContactForm } from "./contact-form";
 import { site } from "@/content/site";
 
@@ -150,10 +151,10 @@ export default function ContactPage() {
         </div>
         <div className="wrap relative z-10 pb-10 pt-24 md:pb-14 md:pt-28">
           <div className="max-w-[44rem]">
-            <p className="text-fine font-medium uppercase tracking-[0.22em] text-white/45">Contact us</p>
+            <Eyebrow dark>Contact us</Eyebrow>
             <h1 className="text-headline mt-4 max-w-[15ch] text-balance">
               <WordReveal text="Tell us what you’re building" />
-              <span className="text-brand-pink">.</span>
+              <span className="brand-text">.</span>
             </h1>
             <Reveal as="p" delay={0.4} className="text-lede mt-5 max-w-[42ch] text-white/70">
               A few sentences is enough to start. We’ll reply within one business day with questions or a plan.

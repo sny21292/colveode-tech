@@ -74,7 +74,7 @@ export const services: Service[] = [
       "Private and permissioned chains",
       "Integration with existing systems and ERPs",
     ],
-    stack: ["Ethereum", "Solidity", "Solana", "Polkadot", "Hyperledger", "Web3.js", "Ethers", "Chainlink", "IPFS", "Rust"],
+    stack: ["Ethereum", "Solidity", "Solana", "Hyperledger", "Web3.js", "Chainlink", "IPFS", "Rust"],
     hue: -18,
   },
   {

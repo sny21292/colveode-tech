@@ -1,11 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Rocket, Award, Users, Heart } from "lucide-react";
 import { WordReveal, Reveal } from "@/components/reveal";
+import { Eyebrow } from "@/components/eyebrow";
 import { Cta } from "@/components/cta";
+import { ProcessExplorer } from "@/components/process-explorer";
 import { services } from "@/content/services";
-import { process } from "@/content/process";
+import { site } from "@/content/site";
+
+const stats = [
+  { icon: Rocket, value: `${site.figures.projects}+`, label: "Projects delivered" },
+  { icon: Award, value: `${site.figures.yearsExperience}+`, label: "Years of experience" },
+  { icon: Users, value: `${site.figures.clients}+`, label: "Clients worldwide" },
+  { icon: Heart, value: "100%", label: "Focused on your growth" },
+];
 
 export const metadata: Metadata = {
   title: "Services",
@@ -39,12 +48,10 @@ export default function ServicesTwoPage() {
         />
         <div className="wrap grid items-center gap-10 pb-10 pt-24 md:grid-cols-[1.05fr_0.95fr] md:pb-14 md:pt-28">
           <div className="relative z-10">
-            <span className="inline-block rounded-full bg-brand-pink/15 px-3.5 py-1 text-fine font-medium uppercase tracking-[0.16em] text-brand-pink">
-              Services
-            </span>
+            <Eyebrow dark>Services</Eyebrow>
             <h1 className="text-headline mt-4 max-w-[18ch] text-balance">
               <WordReveal text="Everything a modern business needs to" />{" "}
-              <span className="text-brand-pink">run online.</span>
+              <span className="brand-text">run online.</span>
             </h1>
             <Reveal as="p" delay={0.4} className="text-lede mt-6 max-w-[40ch] text-white/70">
               Six core services, one team. Pick what you need now and add the rest as you grow.
@@ -78,96 +85,99 @@ export default function ServicesTwoPage() {
         <div className="wrap">
           <div className="grid gap-6 md:grid-cols-2 md:items-end md:gap-16">
             <div>
-              <p className="flex items-center gap-2 text-fine font-medium uppercase tracking-[0.16em] text-mute">
-                <span className="size-2 rounded-full bg-brand-pink" />
-                Our services
-              </p>
-              <Reveal as="h2" className="text-headline mt-4 max-w-[16ch] text-balance">
-                Digital services to help your business grow.
+              <Reveal className="mb-5">
+                <Eyebrow>Our services</Eyebrow>
+              </Reveal>
+              <Reveal as="h2" delay={0.05} className="text-headline max-w-[16ch] text-balance">
+                Digital services to help your <span className="brand-text">business grow.</span>
               </Reveal>
             </div>
-            <p className="text-copy text-mute md:max-w-[46ch]">
+            <Reveal as="p" delay={0.1} className="text-copy text-mute md:max-w-[46ch]">
               From high-performance websites to custom software, we build digital products that solve real problems and
               create long-term value.
-            </p>
+            </Reveal>
           </div>
 
-          <ul className="mt-14 divide-y divide-ink/10 border-t border-ink/10">
+          {/* card grid */}
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((s, i) => (
               <Reveal
+                as="div"
                 key={s.slug}
-                as="li"
-                delay={Math.min(i, 3) * 0.05}
-                amount={0.2}
-                className="grid items-center gap-6 py-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)_auto_auto] md:gap-10 md:py-10"
+                delay={(i % 3) * 0.06}
+                amount={0.15}
               >
-                <div className="flex items-baseline gap-4">
-                  <span className="text-fine font-semibold tabular-nums text-brand-pink">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="text-title">{s.title}</h3>
-                </div>
+                <Link
+                  href={`/services/${s.slug}`}
+                  className="group relative flex h-full flex-col overflow-visible rounded-3xl bg-white px-8 pb-8 pt-9 ring-1 ring-ink/[0.05] transition-all duration-300 ease-apple hover:-translate-y-1 hover:shadow-[0_28px_60px_-30px_rgba(20,4,12,0.28)] hover:ring-brand-pink/25"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <span aria-hidden className="mb-3 block h-[3px] w-7 rounded-full bg-gradient-to-r from-brand-pink to-brand-orange" />
+                      <span className="text-[1.15rem] font-semibold tabular-nums brand-text">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+                    <div className="pointer-events-none relative -mr-3 -mt-14 h-40 w-44 shrink-0 transition-transform duration-300 ease-apple group-hover:-translate-y-1">
+                      <Image
+                        src={`/services/${s.slug}-tile.png`}
+                        alt=""
+                        aria-hidden
+                        fill
+                        sizes="200px"
+                        className="object-contain object-top drop-shadow-[0_18px_28px_rgba(220,30,80,0.16)]"
+                      />
+                    </div>
+                  </div>
 
-                <div>
-                  <p className="max-w-[44ch] text-copy text-mute">{s.lead}</p>
-                  <ul className="mt-4 flex flex-wrap gap-2">
+                  <h3 className="text-title mt-1">{s.title}</h3>
+                  <p className="mt-3 text-copy text-mute">{s.lead}</p>
+
+                  <ul className="mt-5 flex flex-wrap gap-2">
                     {s.stack.slice(0, 3).map((t) => (
-                      <li key={t} className="rounded-full bg-white px-3 py-1 text-fine text-graphite ring-1 ring-ink/[0.06]">
+                      <li key={t} className="rounded-full bg-fog px-3 py-1 text-fine text-graphite ring-1 ring-ink/[0.06]">
                         {t}
                       </li>
                     ))}
                   </ul>
-                </div>
 
-                <div className="relative h-24 w-32 shrink-0 justify-self-start overflow-hidden rounded-2xl ring-1 ring-ink/[0.06] md:justify-self-center">
-                  <Image src={`/services/${s.slug}-tile.png`} alt="" aria-hidden fill sizes="160px" className="object-cover" />
-                </div>
-
-                <Link
-                  href={`/services/${s.slug}`}
-                  className="group inline-flex items-center gap-1.5 justify-self-start text-[15px] font-medium text-graphite md:justify-self-end"
-                >
-                  Learn more
-                  <ArrowRight className="size-4 transition-transform duration-300 ease-apple group-hover:translate-x-0.5" />
+                  <span className="mt-6 inline-flex items-center gap-1.5 pt-1 text-[15px] font-medium text-brand-pink">
+                    Learn more
+                    <ArrowRight className="size-4 transition-transform duration-300 ease-apple group-hover:translate-x-0.5" />
+                  </span>
                 </Link>
               </Reveal>
             ))}
-          </ul>
+          </div>
+
+          {/* stats band */}
+          <Reveal amount={0.2} className="mt-14">
+            <div className="relative isolate overflow-hidden rounded-3xl bg-ink text-white">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 -z-10"
+                style={{ background: "radial-gradient(60% 120% at 12% 50%, rgba(255,15,106,0.22), transparent 60%)" }}
+              />
+              <dl className="grid gap-y-10 divide-white/10 px-8 py-10 sm:grid-cols-2 sm:divide-x lg:grid-cols-4 lg:px-4">
+                {stats.map((st) => (
+                  <div key={st.label} className="flex items-center gap-4 px-2 sm:justify-center lg:px-6">
+                    <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-brand-pink/15 text-brand-pink">
+                      <st.icon className="size-5" strokeWidth={2} aria-hidden />
+                    </span>
+                    <div>
+                      <dd className="text-[1.9rem] font-semibold leading-none tracking-[-0.02em]">{st.value}</dd>
+                      <dt className="mt-1.5 text-fine text-white/60">{st.label}</dt>
+                    </div>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Process */}
-      <section className="bg-ink py-24 text-white md:py-32">
-        <div className="wrap">
-          <div className="grid gap-6 md:grid-cols-2 md:items-end md:gap-16">
-            <div>
-              <p className="flex items-center gap-2 text-fine font-medium uppercase tracking-[0.16em] text-white/45">
-                <span className="size-2 rounded-full bg-brand-pink" />
-                Our process
-              </p>
-              <Reveal as="h2" className="text-headline mt-4 max-w-[14ch] text-balance">
-                How a project moves from idea to launch.
-              </Reveal>
-            </div>
-            <p className="text-copy text-white/60 md:max-w-[42ch]">
-              A clear, collaborative process that keeps things simple and gets real results.
-            </p>
-          </div>
-
-          <div className="relative mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            <div aria-hidden className="absolute left-0 right-0 top-6 hidden h-px bg-white/10 lg:block" />
-            {process.map((step, i) => (
-              <Reveal key={step.title} delay={i * 0.08} amount={0.3} className="relative">
-                <span className="relative z-10 flex size-12 items-center justify-center rounded-full bg-brand-pink text-[15px] font-semibold text-white ring-4 ring-brand-pink/15">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mt-5 text-title">{step.title}</h3>
-                <p className="mt-2 max-w-[26ch] text-copy text-white/60">{step.text}</p>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ProcessExplorer />
 
       <Cta />
     </>

@@ -55,7 +55,7 @@ export function Cta() {
         <Reveal delay={0.2} className="mt-7 flex flex-wrap items-center justify-center gap-3">
           <Link
             href="/contact"
-            className="group inline-flex h-12 items-center gap-2 rounded-full bg-brand-pink px-6 text-base font-medium text-white shadow-[0_10px_34px_-10px_rgba(255,15,106,0.75)] transition-[transform,filter] duration-300 ease-apple hover:brightness-110 active:scale-[0.98]"
+            className="group inline-flex h-12 items-center gap-2 rounded-full bg-gradient-to-r from-brand-pink to-brand-orange px-6 text-base font-medium text-white shadow-[0_12px_34px_-10px_rgba(255,15,106,0.55)] transition-transform duration-300 ease-apple hover:scale-[1.02] active:scale-[0.98]"
           >
             Start a project
             <ArrowRight className="size-4 transition-transform duration-300 ease-apple group-hover:translate-x-0.5" />

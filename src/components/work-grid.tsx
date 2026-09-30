@@ -1,12 +1,9 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
-import { useMemo, useState } from "react";
 import { ArrowRight, ArrowUpRight, ChevronRight } from "lucide-react";
-import { motion } from "motion/react";
 import { Reveal } from "@/components/reveal";
-import { WorkCard, groupOf, GROUP_ORDER } from "@/components/work-explorer";
+import { Eyebrow } from "@/components/eyebrow";
+import { WorkCard } from "@/components/work-explorer";
 import type { Project } from "@/content/projects";
 
 function FeaturedCard({ project }: { project: Project }) {
@@ -27,7 +24,7 @@ function FeaturedCard({ project }: { project: Project }) {
           <div className="mt-7 flex flex-wrap items-center gap-3">
             <Link
               href={`/work/${project.slug}`}
-              className="group inline-flex h-11 items-center gap-2 rounded-full bg-brand-pink px-5 text-[15px] font-medium text-white shadow-[0_10px_30px_-10px_rgba(255,15,106,0.7)] transition-[transform,filter] duration-300 ease-apple hover:brightness-110 active:scale-[0.98]"
+              className="group inline-flex h-11 items-center gap-2 rounded-full bg-gradient-to-r from-brand-pink to-brand-orange px-5 text-[15px] font-medium text-white shadow-[0_12px_34px_-10px_rgba(255,15,106,0.55)] transition-transform duration-300 ease-apple hover:scale-[1.02] active:scale-[0.98]"
             >
               View project
               <ArrowRight className="size-4 transition-transform duration-300 ease-apple group-hover:translate-x-0.5" />
@@ -65,17 +62,9 @@ function FeaturedCard({ project }: { project: Project }) {
 
 export function WorkGrid({ projects }: { projects: Project[] }) {
   const [featured, ...rest] = projects;
-  const [group, setGroup] = useState<string>("All");
-
-  const groups = useMemo(() => {
-    const present = new Set(rest.map((p) => groupOf(p.category)));
-    return ["All", ...GROUP_ORDER.filter((g) => present.has(g))];
-  }, [rest]);
-
-  const filtered = useMemo(
-    () => (group === "All" ? rest : rest.filter((p) => groupOf(p.category) === group)),
-    [rest, group],
-  );
+  // A teaser of six spread across the whole list, so it mixes newer and older work.
+  const step = Math.max(1, Math.floor(rest.length / 6));
+  const shown = Array.from({ length: Math.min(6, rest.length) }, (_, i) => rest[i * step]).filter(Boolean);
 
   return (
     <section className="bg-fog py-20 text-graphite md:py-28">
@@ -84,13 +73,10 @@ export function WorkGrid({ projects }: { projects: Project[] }) {
         <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:items-end">
           <div>
             <Reveal className="mb-5">
-              <span className="flex items-center gap-3 text-fine font-medium uppercase tracking-[0.16em] text-mute">
-                <span aria-hidden className="h-px w-8 bg-brand-pink" />
-                Our work
-              </span>
+              <Eyebrow>Our work</Eyebrow>
             </Reveal>
             <Reveal as="h2" delay={0.05} className="text-headline max-w-[16ch] text-balance">
-              Work that carries <span className="text-brand-pink">real weight.</span>
+              Work that carries <span className="brand-text">real weight.</span>
             </Reveal>
           </div>
           <Reveal delay={0.12} className="md:pb-2">
@@ -108,44 +94,21 @@ export function WorkGrid({ projects }: { projects: Project[] }) {
           </Reveal>
         </div>
 
-        {/* filter pills */}
-        <Reveal delay={0.15} className="no-scrollbar -mx-1 mt-8 flex gap-2 overflow-x-auto px-1 pb-1">
-          {groups.map((g) => {
-            const active = g === group;
-            return (
-              <button
-                key={g}
-                type="button"
-                onClick={() => setGroup(g)}
-                className={`shrink-0 rounded-full px-4 h-9 text-[14px] font-medium transition-colors duration-300 ${
-                  active ? "bg-brand-pink text-white" : "bg-white text-graphite ring-1 ring-ink/[0.08] hover:bg-ink/[0.04]"
-                }`}
-              >
-                {g}
-              </button>
-            );
-          })}
-        </Reveal>
-
-        {/* featured project (only on the full view) */}
-        {group === "All" && featured && (
-          <Reveal amount={0.15} className="mt-8">
+        {/* featured project */}
+        {featured && (
+          <Reveal amount={0.15} className="mt-10">
             <FeaturedCard project={featured} />
           </Reveal>
         )}
 
         {/* grid */}
-        {filtered.length === 0 ? (
-          <p className="mt-16 text-center text-copy text-mute">No projects in that category yet.</p>
-        ) : (
-          <motion.ul layout className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((p) => (
-              <motion.li layout key={p.slug} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
-                <WorkCard project={p} />
-              </motion.li>
-            ))}
-          </motion.ul>
-        )}
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {shown.map((p, i) => (
+            <Reveal as="div" key={p.slug} delay={(i % 3) * 0.06} amount={0.15}>
+              <WorkCard project={p} />
+            </Reveal>
+          ))}
+        </div>
 
         {/* view all */}
         <Reveal className="mt-12 flex justify-center">

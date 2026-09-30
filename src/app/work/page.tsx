@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { WordReveal, Reveal } from "@/components/reveal";
+import { Eyebrow } from "@/components/eyebrow";
 import { WorkExplorer } from "@/components/work-explorer";
 import { Cta } from "@/components/cta";
 import { projects } from "@/content/projects";
@@ -18,8 +19,8 @@ export default function WorkPage() {
       <section className="relative isolate overflow-hidden bg-ink text-white">
         <div className="wrap grid items-center gap-8 pb-10 pt-24 md:grid-cols-[1.1fr_0.9fr] md:gap-6 md:pb-14 md:pt-28">
           <div className="relative z-10">
-            <p className="text-fine font-medium tracking-[0.16em] text-white/45">Our work</p>
-            <h1 className="text-headline mt-4 max-w-[16ch] text-balance">
+            <Eyebrow dark>Our work</Eyebrow>
+            <h1 className="text-headline mt-4 max-w-[24ch] text-balance">
               <WordReveal text="Work that carries real weight." />
             </h1>
             <Reveal as="p" delay={0.4} className="text-lede mt-6 max-w-[40ch] text-white/70">

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ChevronRight } from "lucide-react";
 import { services } from "@/content/services";
 import { Reveal } from "@/components/reveal";
+import { Eyebrow } from "@/components/eyebrow";
 
 /** Four services featured on the home page; the rest live behind “View all services”. */
 const FEATURED = [
@@ -22,13 +23,11 @@ export function ServicesRail() {
         <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:items-end">
           <div>
             <Reveal className="mb-5">
-              <span className="inline-flex items-center rounded-full bg-brand-pink/10 px-3 py-1 text-fine font-semibold tracking-[0.06em] text-brand-pink">
-                Services
-              </span>
+              <Eyebrow>Services</Eyebrow>
             </Reveal>
             <Reveal as="h2" delay={0.05} className="text-headline max-w-[18ch] text-balance">
               Everything a modern business needs to{" "}
-              <span className="text-brand-pink">run online.</span>
+              <span className="brand-text">run online.</span>
             </Reveal>
           </div>
           <Reveal delay={0.12} className="md:pb-2">
