@@ -78,10 +78,12 @@ export function ContactForm() {
           {pending ? "Sending…" : "Send message"}
           <ArrowRight className="size-4" />
         </button>
-        <p className="inline-flex items-center gap-2 text-fine text-mute">
-          <Lock className="size-3.5" />
+        <p className="max-w-[34ch] text-fine text-mute">
+          <Lock className="mr-1.5 inline size-3.5 -translate-y-px" aria-hidden />
           Or email us directly at{" "}
-          <a className="underline-offset-2 hover:underline" href={`mailto:${site.email}`}>{site.email}</a>
+          <a className="whitespace-nowrap text-graphite underline-offset-2 hover:underline" href={`mailto:${site.email}`}>
+            {site.email}
+          </a>
         </p>
       </div>
 

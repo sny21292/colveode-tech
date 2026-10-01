@@ -30,7 +30,7 @@ export default function BlogPage() {
         </div>
 
         <div className="wrap relative">
-          <Reveal as="h1" delay={0.08} className="text-headline max-w-[16ch] text-balance">
+          <Reveal as="h1" delay={0.08} className="text-headline max-w-[20ch] text-balance">
             <span className="brand-text">Blog</span>  posts
           </Reveal>
           <Reveal as="p" delay={0.16} className="text-lede mt-5 max-w-[40ch] text-white/70">

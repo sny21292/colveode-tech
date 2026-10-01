@@ -75,7 +75,7 @@ export function WorkGrid({ projects }: { projects: Project[] }) {
             <Reveal className="mb-5">
               <Eyebrow>Our work</Eyebrow>
             </Reveal>
-            <Reveal as="h2" delay={0.05} className="text-headline max-w-[16ch] text-balance">
+            <Reveal as="h2" delay={0.05} className="text-headline max-w-[20ch] text-balance">
               Work that carries <span className="brand-text">real weight.</span>
             </Reveal>
           </div>

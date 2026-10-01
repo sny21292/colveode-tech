@@ -27,7 +27,7 @@ export const site = {
   ],
   figures: {
     yearsExperience: 12,
-    projects: 100,
-    clients: 54,
+    projects: 60,
+    clients: 35,
   },
 } as const;
