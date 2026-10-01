@@ -17,7 +17,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const p = getPost(slug);
   if (!p) return {};
-  return { title: p.title, description: p.excerpt };
+  return {
+    title: p.title,
+    description: p.excerpt,
+    alternates: { canonical: `/blog/${slug}` },
+    openGraph: {
+      type: "article",
+      title: p.title,
+      description: p.excerpt,
+      url: `/blog/${slug}`,
+      publishedTime: Number.isNaN(Date.parse(p.date)) ? undefined : new Date(p.date).toISOString(),
+    },
+  };
 }
 
 /** Render the article body, grouping consecutive bullets into a list. */

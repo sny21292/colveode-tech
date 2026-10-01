@@ -1,30 +1,30 @@
-import { Pool } from "pg";
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
 /**
- * A single pg Pool, cached across hot-reloads and serverless invocations.
- * Reads `DATABASE_URL`. Returns null when no database is configured, so the
- * app runs fine locally without Postgres.
+ * A single Supabase client, cached across hot-reloads and serverless
+ * invocations. Reads `SUPABASE_URL` + `SUPABASE_ANON_KEY` (the publishable
+ * key). Returns null when Supabase isn't configured, so the app still runs
+ * locally without it.
+ *
+ * Writes go through an INSERT-only row-level-security policy, so the key can
+ * add enquiries but can never read or modify stored data.
  */
-const g = globalThis as unknown as { __cloveodePool?: Pool | null };
+const g = globalThis as unknown as { __cloveodeSupabase?: SupabaseClient | null };
 
-export function getPool(): Pool | null {
-  if (g.__cloveodePool !== undefined) return g.__cloveodePool;
+export function getClient(): SupabaseClient | null {
+  if (g.__cloveodeSupabase !== undefined) return g.__cloveodeSupabase;
 
-  const connectionString = process.env.DATABASE_URL;
-  if (!connectionString) {
-    g.__cloveodePool = null;
+  const url = process.env.SUPABASE_URL;
+  const key = process.env.SUPABASE_ANON_KEY;
+  if (!url || !key) {
+    g.__cloveodeSupabase = null;
     return null;
   }
 
-  // Managed Postgres (Neon, Supabase, Vercel, …) needs SSL; local usually doesn't.
-  const isLocal = /@(localhost|127\.0\.0\.1)[:/]/.test(connectionString);
-  g.__cloveodePool = new Pool({
-    connectionString,
-    max: 3,
-    idleTimeoutMillis: 10_000,
-    ssl: isLocal ? undefined : { rejectUnauthorized: false },
+  g.__cloveodeSupabase = createClient(url, key, {
+    auth: { persistSession: false },
   });
-  return g.__cloveodePool;
+  return g.__cloveodeSupabase;
 }
 
 export type ContactSubmission = {
@@ -41,17 +41,20 @@ export type ContactSubmission = {
  * Assumes the `contact_submissions` table exists (see db/schema.sql).
  */
 export async function saveContactSubmission(v: ContactSubmission): Promise<boolean> {
-  const pool = getPool();
-  if (!pool) return false;
+  const supabase = getClient();
+  if (!supabase) return false;
   try {
-    await pool.query(
-      `insert into contact_submissions (name, email, company, budget, message)
-       values ($1, $2, $3, $4, $5)`,
-      [v.name, v.email, v.company || null, v.budget || null, v.message],
-    );
+    const { error } = await supabase.from("contact_submissions").insert({
+      name: v.name,
+      email: v.email,
+      company: v.company || null,
+      budget: v.budget || null,
+      message: v.message,
+    });
+    if (error) throw error;
     return true;
   } catch (err) {
-    console.error("[contact] failed to save submission to Postgres", err);
+    console.error("[contact] failed to save submission to Supabase", err);
     return false;
   }
 }

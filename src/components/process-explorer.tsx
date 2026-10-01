@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { process } from "@/content/process";
 import { Eyebrow } from "@/components/eyebrow";
+import { Reveal } from "@/components/reveal";
 
 const STEP_ICONS: LucideIcon[][] = [
   [Target, Users, FileText], // Discover
@@ -46,17 +47,17 @@ function Timeline({
 }) {
   return (
     <ol className="relative">
-      {/* connecting line + progress fill */}
-      <span aria-hidden className="absolute left-[0.6875rem] top-4 bottom-4 w-px bg-ink/10" />
+      {/* connecting line + progress fill — spans from the first dot centre to the last */}
+      <span aria-hidden className="absolute left-[0.6875rem] top-[0.6875rem] bottom-[0.6875rem] w-px bg-ink/10" />
       <motion.span
         aria-hidden
         style={{ scaleY: progress }}
-        className="absolute left-[0.6875rem] top-4 bottom-4 w-px origin-top bg-gradient-to-b from-brand-pink to-brand-orange"
+        className="absolute left-[0.6875rem] top-[0.6875rem] bottom-[0.6875rem] w-px origin-top bg-gradient-to-b from-brand-pink to-brand-orange"
       />
       {process.map((step, i) => {
         const isActive = i === active;
         return (
-          <li key={step.title} className={i === process.length - 1 ? "" : "pb-8 sm:pb-10"}>
+          <li key={step.title} className={i === process.length - 1 ? "" : "pb-14 sm:pb-16"}>
             <button
               type="button"
               onClick={() => onSelect(i)}
@@ -195,7 +196,74 @@ function DashboardArt({ active }: { active: number }) {
   );
 }
 
-export function ProcessExplorer() {
+/* Mobile / tablet: a clean stacked list — no scroll-pinning. */
+function MobileProcess() {
+  return (
+    <section className="bg-fog text-graphite lg:hidden">
+      <div className="wrap py-20 md:py-24">
+        <Reveal className="mb-5">
+          <Eyebrow>Our process</Eyebrow>
+        </Reveal>
+        <Reveal as="h2" delay={0.05} className="text-headline max-w-[14ch] text-balance">
+          How a project moves from <span className="brand-text">idea to launch.</span>
+        </Reveal>
+        <Reveal as="p" delay={0.1} className="text-copy mt-5 max-w-[40ch] text-mute">
+          A clear and collaborative process that turns ideas into real, working products.
+        </Reveal>
+
+        <ol className="mt-12 space-y-16">
+          {process.map((step, i) => {
+            const icons = STEP_ICONS[i];
+            return (
+              <Reveal as="li" key={step.title} amount={0.15}>
+                <div className="relative mx-auto aspect-[3/2] w-full max-w-md">
+                  <Image
+                    src={STEP_ART[i]}
+                    alt=""
+                    aria-hidden
+                    fill
+                    sizes="(max-width: 768px) 92vw, 60vw"
+                    className="object-contain"
+                  />
+                </div>
+                <div className="mt-5 flex items-center gap-3">
+                  <span aria-hidden className="h-[3px] w-7 rounded-full bg-gradient-to-r from-brand-pink to-brand-orange" />
+                  <span className="text-[0.95rem] font-semibold tabular-nums brand-text">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-fine font-semibold tabular-nums text-mute">
+                    / {String(process.length).padStart(2, "0")}
+                  </span>
+                </div>
+                <h3 className="text-title mt-3">{step.title}</h3>
+                <p className="mt-3 text-copy text-mute">{step.text}</p>
+                <ul className="mt-6 space-y-5">
+                  {step.steps.map((sub, j) => {
+                    const Icon = icons[j] ?? Target;
+                    return (
+                      <li key={sub.title} className="flex items-start gap-4">
+                        <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-brand-pink/10 text-brand-pink">
+                          <Icon className="size-[1.1rem]" strokeWidth={2} aria-hidden />
+                        </span>
+                        <div>
+                          <p className="text-copy font-semibold text-graphite">{sub.title}</p>
+                          <p className="mt-0.5 text-fine text-mute">{sub.text}</p>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </Reveal>
+            );
+          })}
+        </ol>
+      </div>
+    </section>
+  );
+}
+
+/* Large screens: pinned, scroll-driven explorer. */
+function DesktopProcess() {
   const sectionRef = useRef<HTMLElement>(null);
   const [active, setActive] = useState(0);
 
@@ -222,7 +290,7 @@ export function ProcessExplorer() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-fog text-graphite"
+      className="relative hidden bg-fog text-graphite lg:block"
       style={{ height: `${process.length * 100}vh` }}
     >
       <div className="sticky top-0 flex min-h-screen items-center py-16">
@@ -231,7 +299,7 @@ export function ProcessExplorer() {
           <div className="grid gap-x-16 gap-y-4 lg:grid-cols-2">
             <div>
               <Eyebrow>Our process</Eyebrow>
-              <h2 className="text-headline mt-5 max-w-[14ch] text-balance">
+              <h2 className="text-headline mt-5 max-w-[24ch] text-balance">
                 How a project moves from <span className="brand-text">idea to launch.</span>
               </h2>
             </div>
@@ -241,18 +309,27 @@ export function ProcessExplorer() {
           </div>
 
           {/* body */}
-          <div className="mt-10 grid items-center gap-x-16 gap-y-10 md:mt-12 lg:grid-cols-2">
-            <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-6 sm:gap-10">
+          <div className="mt-12 grid items-center gap-x-16 gap-y-10 lg:grid-cols-2">
+            <div className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-10">
               <Timeline active={active} progress={scrollYProgress} onSelect={scrollToStep} />
               <Detail active={active} onPrev={() => scrollToStep(active - 1)} onNext={() => scrollToStep(active + 1)} />
             </div>
 
-            <div className="hidden self-center md:block">
+            <div className="self-center">
               <DashboardArt active={active} />
             </div>
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+export function ProcessExplorer() {
+  return (
+    <>
+      <MobileProcess />
+      <DesktopProcess />
+    </>
   );
 }

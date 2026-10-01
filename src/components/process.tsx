@@ -73,7 +73,7 @@ export function Process() {
               </div>
               <h3 className="text-title hidden md:block">{step.title}</h3>
               <motion.p
-                className="mt-4 max-w-[38ch] text-lede text-white/70"
+                className="mt-4 max-w-[38ch] text-lede text-white/80"
                 initial={false}
                 animate={{ opacity: active === i ? 1 : 0.6 }}
                 transition={{ duration: 0.5 }}

@@ -47,7 +47,7 @@ export function Cta() {
           <span className="brand-text">remarkable.</span>
         </Reveal>
 
-        <Reveal as="p" delay={0.12} className="text-copy mx-auto mt-4 max-w-[42ch] text-white/70">
+        <Reveal as="p" delay={0.12} className="text-copy mx-auto mt-4 max-w-[42ch] text-white/80">
           Tell us what you’re working on. We’ll reply within one business day — no
           forms lost, no pitch decks required.
         </Reveal>

@@ -10,6 +10,7 @@ import { site } from "@/content/site";
 export const metadata: Metadata = {
   title: "About",
   description: `${site.name} is a software studio founded in ${site.founded} in ${site.location.city}, ${site.location.region}. We build websites, stores, blockchain systems and custom software for clients worldwide.`,
+  alternates: { canonical: "/about" },
 };
 
 const values = [

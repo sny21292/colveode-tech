@@ -14,6 +14,7 @@ import { Cta } from "@/components/cta";
 import { TechChip } from "@/components/tech-icons";
 import { getService, services } from "@/content/services";
 import { projects } from "@/content/projects";
+import { site } from "@/content/site";
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -25,7 +26,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const s = getService(slug);
   if (!s) return {};
-  return { title: s.title, description: s.short };
+  return {
+    title: s.title,
+    description: s.short,
+    alternates: { canonical: `/services/${slug}` },
+    openGraph: { title: `${s.title} | ${site.name}`, description: s.short, url: `/services/${slug}` },
+  };
 }
 
 const values = [

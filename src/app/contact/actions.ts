@@ -37,7 +37,7 @@ export async function sendEnquiry(_prev: ContactState, formData: FormData): Prom
   if (message.length < 20) errors.message = "Tell us a little more, at least a sentence or two.";
   if (Object.keys(errors).length) return { status: "error", errors, values };
 
-  // Persist to Postgres first (best-effort — never blocks the visitor).
+  // Persist to Supabase first (best-effort — never blocks the visitor).
   const saved = await saveContactSubmission(values);
 
   const apiKey = process.env.RESEND_API_KEY;
@@ -47,7 +47,7 @@ export async function sendEnquiry(_prev: ContactState, formData: FormData): Prom
   if (!apiKey) {
     // No email configured: still a success if the enquiry landed in the database.
     if (saved) return { status: "success" };
-    console.warn("[contact] RESEND_API_KEY and DATABASE_URL both missing; enquiry not captured", { name, email });
+    console.warn("[contact] RESEND_API_KEY and Supabase both missing; enquiry not captured", { name, email });
     return {
       status: "error",
       values,

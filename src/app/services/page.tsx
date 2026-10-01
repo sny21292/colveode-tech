@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   title: "Services",
   description:
     "Web development, e-commerce, blockchain, custom software, SEO and integrations — everything a modern business needs to run online, from one team.",
+  alternates: { canonical: "/services" },
 };
 
 function StartButton({ className = "" }: { className?: string }) {
