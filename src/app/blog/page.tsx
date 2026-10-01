@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Blog",
   description:
     "Insights and updates on web development, blockchain, APIs and SaaS from the Cloveode Technologies team.",
+  alternates: { canonical: "/blog" },
 };
 
 export default function BlogPage() {

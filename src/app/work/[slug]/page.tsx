@@ -22,7 +22,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const p = getProject(slug);
   if (!p) return {};
-  return { title: p.title, description: p.summary };
+  return {
+    title: p.title,
+    description: p.summary,
+    alternates: { canonical: `/work/${slug}` },
+    openGraph: { title: p.title, description: p.summary, url: `/work/${slug}` },
+  };
 }
 
 /** A screenshot in a subtle browser frame. */

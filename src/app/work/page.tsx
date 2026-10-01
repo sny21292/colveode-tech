@@ -11,6 +11,7 @@ import { projects } from "@/content/projects";
 export const metadata: Metadata = {
   title: "Work",
   description: "Selected projects across e-commerce, blockchain, custom software, web development and SEO.",
+  alternates: { canonical: "/work" },
 };
 
 export default function WorkPage() {

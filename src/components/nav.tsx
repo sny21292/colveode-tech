@@ -55,9 +55,11 @@ export function Nav() {
             })}
           </ul>
           <div className="flex items-center gap-2">
-            <Button href="/contact" className="hidden h-9 px-4 text-[14px] md:inline-flex">
-              Start a project
-            </Button>
+            <span className="hidden md:inline-flex">
+              <Button href="/contact" className="h-9 px-4 text-[14px]">
+                Start a project
+              </Button>
+            </span>
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
@@ -94,7 +96,7 @@ export function Nav() {
                     <Link
                       href={item.href}
                       onClick={() => setOpen(false)}
-                      className="block py-3 text-4xl font-semibold tracking-[-0.03em]"
+                      className="block py-2 text-2xl font-semibold tracking-[-0.02em]"
                     >
                       {item.label}
                     </Link>

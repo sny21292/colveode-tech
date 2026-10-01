@@ -10,6 +10,7 @@ import { site } from "@/content/site";
 export const metadata: Metadata = {
   title: "Contact",
   description: `Start a project with ${site.name}. Tell us what you’re working on and we’ll reply within one business day.`,
+  alternates: { canonical: "/contact" },
 };
 
 const EmailIcon = (

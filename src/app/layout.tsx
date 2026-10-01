@@ -19,6 +19,7 @@ export const metadata: Metadata = {
     template: `%s | ${site.shortName}`,
   },
   description: site.description,
+  alternates: { canonical: "/" },
   applicationName: site.name,
   keywords: [
     "web development",
@@ -52,20 +53,37 @@ export const viewport: Viewport = {
 
 const organizationJsonLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: site.name,
-  url: site.url,
-  logo: `${site.url}/brand/logo-mark.png`,
-  email: site.email,
-  foundingDate: String(site.founded),
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: site.location.city,
-    addressRegion: site.location.region,
-    postalCode: site.location.postalCode,
-    addressCountry: "IN",
-  },
-  sameAs: Object.values(site.social),
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${site.url}/#organization`,
+      name: site.name,
+      url: site.url,
+      logo: `${site.url}/brand/logo-mark.png`,
+      image: `${site.url}/brand/logo-mark.png`,
+      description: site.description,
+      email: site.email,
+      foundingDate: String(site.founded),
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: site.location.city,
+        addressRegion: site.location.region,
+        postalCode: site.location.postalCode,
+        addressCountry: "IN",
+      },
+      areaServed: "Worldwide",
+      sameAs: Object.values(site.social),
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${site.url}/#website`,
+      url: site.url,
+      name: site.name,
+      description: site.description,
+      publisher: { "@id": `${site.url}/#organization` },
+      inLanguage: "en",
+    },
+  ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
