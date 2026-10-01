@@ -57,7 +57,7 @@ export default function AboutTwoPage() {
         <div className="wrap relative z-10 pb-10 pt-24 md:pb-14 md:pt-28">
           <div className="max-w-[40rem]">
             <Eyebrow dark>About us</Eyebrow>
-            <h1 className="text-headline mt-4 max-w-[16ch] text-balance">
+            <h1 className="text-headline mt-4 max-w-[20ch] ">
               <WordReveal text="A small studio with a long view." />
             </h1>
             <Reveal as="p" delay={0.4} className="text-lede mt-5 max-w-[38ch] text-white/70">
@@ -109,7 +109,7 @@ export default function AboutTwoPage() {
       <section className="bg-fog py-20 text-graphite md:py-28">
         <div className="wrap">
           <Eyebrow>What we hold ourselves to</Eyebrow>
-          <Reveal as="h2" className="text-headline mt-4 max-w-[16ch] text-balance">
+          <Reveal as="h2" className="text-headline mt-4 max-w-[20ch] ">
             Four values that guide everything we do.
           </Reveal>
           <ul className="mt-12 grid gap-5 md:grid-cols-2">
@@ -132,7 +132,7 @@ export default function AboutTwoPage() {
       <section className="bg-white py-20 text-graphite md:py-24">
         <div className="wrap">
           <Eyebrow>By the numbers</Eyebrow>
-          <Reveal as="h2" className="text-headline mt-4 max-w-[16ch] text-balance">
+          <Reveal as="h2" className="text-headline mt-4 max-w-[20ch] ">
             Real work. Real relationships.
           </Reveal>
           <dl className="mt-12 grid gap-10 sm:grid-cols-3">
@@ -182,7 +182,7 @@ export default function AboutTwoPage() {
       <section className="bg-white py-20 text-graphite md:py-24">
         <div className="wrap">
           <Eyebrow>Our approach</Eyebrow>
-          <Reveal as="h2" className="text-headline mt-4 max-w-[16ch] text-balance">
+          <Reveal as="h2" className="text-headline mt-4 max-w-[20ch] ">
             A small team, a bigger perspective.
           </Reveal>
           <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">

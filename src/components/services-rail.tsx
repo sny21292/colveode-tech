@@ -53,13 +53,13 @@ export function ServicesRail() {
                 href={`/services/${s.slug}`}
                 className="group flex h-full flex-col rounded-3xl bg-white p-5 ring-1 ring-ink/[0.05] shadow-[0_1px_2px_rgba(15,15,15,0.04)] transition-[transform,box-shadow] duration-500 ease-apple hover:-translate-y-1.5 hover:shadow-[0_28px_56px_-24px_rgba(15,15,15,0.28)]"
               >
-                <div className="relative mb-6 aspect-[4/3] overflow-hidden rounded-2xl bg-fog ring-1 ring-ink/[0.04]">
+                <div className="relative mb-5 aspect-[4/3] overflow-hidden rounded-2xl bg-fog ring-1 ring-ink/[0.04]">
                   <Image
-                    src={`/services/icon/${s.slug}.png`}
+                    src={`/services/${s.slug}-tile.png`}
                     alt=""
                     fill
                     sizes="(max-width:640px) 90vw, (max-width:1024px) 45vw, 22vw"
-                    className="object-contain transition-transform duration-700 ease-apple group-hover:scale-[1.06]"
+                    className="object-contain p-2 transition-transform duration-700 ease-apple group-hover:scale-[1.05]"
                   />
                 </div>
                 <h3 className="text-title">{s.title}</h3>

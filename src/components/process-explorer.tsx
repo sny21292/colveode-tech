@@ -293,7 +293,7 @@ function DesktopProcess() {
       className="relative hidden bg-fog text-graphite lg:block"
       style={{ height: `${process.length * 100}vh` }}
     >
-      <div className="sticky top-0 flex min-h-screen items-center py-16">
+      <div className="sticky top-0 flex min-h-screen items-center">
         <div className="wrap w-full">
           {/* header */}
           <div className="grid gap-x-16 gap-y-4 lg:grid-cols-2">

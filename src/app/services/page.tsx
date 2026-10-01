@@ -89,7 +89,7 @@ export default function ServicesTwoPage() {
               <Reveal className="mb-5">
                 <Eyebrow>Our services</Eyebrow>
               </Reveal>
-              <Reveal as="h2" delay={0.05} className="text-headline max-w-[16ch] text-balance">
+              <Reveal as="h2" delay={0.05} className="text-headline max-w-[20ch] text-balance">
                 Digital services to help your <span className="brand-text">business grow.</span>
               </Reveal>
             </div>

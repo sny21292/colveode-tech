@@ -141,7 +141,7 @@ export default async function ServicePage({ params }: Props) {
         <div className="wrap grid gap-12 md:grid-cols-2 md:gap-16">
           <div>
             <Eyebrow>What we build</Eyebrow>
-            <Reveal as="h2" className="text-headline mt-4 max-w-[16ch] text-balance">
+            <Reveal as="h2" className="text-headline mt-4 max-w-[20ch] ">
               Digital experiences designed to perform.
             </Reveal>
             <p className="mt-6 max-w-[46ch] text-copy text-mute">

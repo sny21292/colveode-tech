@@ -160,7 +160,7 @@ export default async function ProjectPage({ params }: Props) {
         <div className="wrap grid gap-12 md:grid-cols-[45%_55%] md:items-center md:gap-16">
           <div>
             <SectionLabel num="01">Overview</SectionLabel>
-            {p.overview && <h2 className="text-title mt-4 max-w-[18ch] text-balance">{p.overview}</h2>}
+            {p.overview && <h2 className="text-title mt-4 max-w-[24ch] text-balance">{p.overview}</h2>}
             <div className="mt-6 space-y-5">
               {(p.body ?? [p.summary]).map((para, i) => (
                 <Reveal key={i} as="p" className="text-copy max-w-[46ch] text-mute" amount={0.3}>
@@ -273,7 +273,7 @@ export default async function ProjectPage({ params }: Props) {
       <section className="bg-fog py-20 text-graphite md:py-28">
         <div className="wrap">
           <p className="text-fine font-medium uppercase tracking-[0.18em] text-mute">More work</p>
-          <Reveal as="h2" className="text-headline mt-3 max-w-[16ch] text-balance">
+          <Reveal as="h2" className="text-headline mt-3 max-w-[20ch] text-balance">
             Other projects you might like
           </Reveal>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
