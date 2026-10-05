@@ -138,7 +138,7 @@ export const projects: Project[] = [
   },
   {
     slug: "taste-marketplace",
-    tech: ["WordPress","WooCommerce","PHP","REST","Plugin"],
+    tech: ["WordPress","WooCommerce","PHP"],
     title: "Taste Marketplace — food & wine experiences",
     client: "Taste Marketplace",
     category: "WordPress / E-commerce",
@@ -164,7 +164,7 @@ export const projects: Project[] = [
   },
   {
     slug: "aged-care-cost-calculator",
-    tech: ["WordPress","Elementor","HTML","CSS","Plugin"],
+    tech: ["WordPress","Elementor","HTML","CSS"],
     title: "Rebuilding an aged care cost calculator",
     client: "Aged Care Solutions",
     category: "Web development",
@@ -243,7 +243,7 @@ export const projects: Project[] = [
   },
   {
     slug: "creatiosoft-service-pages",
-    tech: ["WordPress","JavaScript","HTML","CSS","REST"],
+    tech: ["WordPress","JavaScript","HTML","CSS"],
     title: "Responsive PHP service pages with lead-capture forms",
     client: "Creatiosoft",
     category: "Web development",
@@ -300,7 +300,7 @@ export const projects: Project[] = [
 
   {
     slug: "nexus-clinic-wordpress",
-    tech: ["WordPress","PHP","Elementor","HTML","CSS","REST","Plugin"],
+    tech: ["WordPress","PHP","Elementor","HTML","CSS"],
     title: "Landing pages, blogs and new pages for an aesthetic clinic",
     client: "Nexus Clinic",
     category: "WordPress / Web development",
@@ -326,7 +326,7 @@ export const projects: Project[] = [
   },
   {
     slug: "launch-laundry",
-    tech: ["WordPress","PHP","Elementor","HTML","CSS","REST","Plugin"],
+    tech: ["WordPress","PHP","Elementor","HTML","CSS"],
     title: "A full website for a commercial laundry supplier",
     client: "Launch Laundry",
     category: "WordPress / Web development",

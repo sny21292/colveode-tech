@@ -19,7 +19,7 @@ export function Hero() {
   const textOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
   return (
-    <section ref={ref} className="relative isolate min-h-[100svh] overflow-hidden bg-ink text-white">
+    <section ref={ref} className="relative isolate min-h-[84svh] overflow-hidden bg-ink text-white md:min-h-[100svh]">
       <motion.div
         style={reduced ? undefined : { y: blobY, scale: blobScale }}
         className="pointer-events-none absolute inset-x-0 bottom-[-30%] top-0"
@@ -32,7 +32,7 @@ export function Hero() {
 
       <motion.div
         style={reduced ? undefined : { y: textY, opacity: textOpacity }}
-        className="wrap relative z-10 flex min-h-[100svh] flex-col items-center pt-32 text-center md:pt-40"
+        className="wrap relative z-10 flex min-h-[84svh] flex-col items-center pt-28 text-center md:min-h-[100svh] md:pt-40"
       >
         <h1 className="text-display max-w-[14ch] text-balance">
           <WordReveal text={site.tagline} delay={0.15} />
