@@ -41,8 +41,13 @@ export async function sendEnquiry(_prev: ContactState, formData: FormData): Prom
   const saved = await saveContactSubmission(values);
 
   const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO_EMAIL ?? site.email;
-  const from = process.env.CONTACT_FROM_EMAIL ?? `Cloveode Website <onboarding@resend.dev>`;
+  // CONTACT_TO_EMAIL may be a single address or a comma-separated list — each
+  // recipient gets the enquiry. Falls back to the site email.
+  const to = (process.env.CONTACT_TO_EMAIL || site.email)
+    .split(",")
+    .map((addr) => addr.trim())
+    .filter(Boolean);
+  const from = process.env.CONTACT_FROM_EMAIL || `Cloveode Website <onboarding@resend.dev>`;
 
   if (!apiKey) {
     // No email configured: still a success if the enquiry landed in the database.
