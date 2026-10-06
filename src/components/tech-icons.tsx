@@ -83,16 +83,14 @@ function BrandMark({ icon, sm }: { icon: Icon; sm?: boolean }) {
 /** “Technology stack” row: a soft-tinted circle icon with the name below, per tech. */
 export function TechStack({ tech }: { tech: string[] }) {
   return (
-    <div className="flex flex-wrap gap-y-7">
-      {tech.map((name, i) => {
+    <div className="flex flex-wrap gap-x-6 gap-y-8 sm:gap-x-8">
+      {tech.map((name) => {
         const icon = ICONS[name];
         const hex = icon ? `#${icon.hex}` : null;
         return (
           <div
             key={name}
-            className={`flex min-w-[4.5rem] flex-1 basis-[5rem] flex-col items-center gap-2.5 px-2 ${
-              i > 0 ? "border-l border-ink/10" : ""
-            }`}
+            className="flex w-16 flex-col items-center gap-2.5 text-center"
           >
             <div
               className="flex size-14 items-center justify-center rounded-full ring-1 ring-ink/[0.04]"

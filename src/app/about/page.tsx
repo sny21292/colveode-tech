@@ -164,7 +164,7 @@ export default function AboutTwoPage() {
           <div>
             <Eyebrow>Where we work</Eyebrow>
             <Reveal as="h2" className="text-headline mt-4 max-w-[12ch] text-balance">
-              Based in Mandi, built for anywhere.
+              Built for anywhere.
             </Reveal>
             <p className="mt-6 max-w-[46ch] text-copy text-mute">
               We’re based in {site.location.city}, a small city in {site.location.region} where the Beas river meets the

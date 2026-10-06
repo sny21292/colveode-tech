@@ -184,7 +184,7 @@ export default async function ProjectPage({ params }: Props) {
             </dl>
             {p.tech?.length ? (
               <div className="mt-9">
-                <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
                   <span className="flex items-center gap-3 text-fine font-medium uppercase tracking-[0.16em] text-graphite">
                     <span aria-hidden className="h-px w-8 bg-brand-pink" />
                     Technology stack
