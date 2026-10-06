@@ -150,22 +150,31 @@ export default function AboutTwoPage() {
       </section>
 
       {/* Where we work */}
-      <section className="overflow-hidden bg-fog py-20 text-graphite md:py-28">
-        <div className="wrap max-w-[52rem] text-center">
-          <Reveal>
-            <Eyebrow className="justify-center">Where we work</Eyebrow>
-          </Reveal>
-          <Reveal as="h2" delay={0.05} className="text-headline mt-5 text-balance">
-            Based in Mandi, built for anywhere.
-          </Reveal>
-          <Reveal as="p" delay={0.1} className="mx-auto mt-6 max-w-[48ch] text-copy text-mute">
-            We’re based in {site.location.city}, a small city in {site.location.region} where the Beas river meets the
-            mountains. Quiet, focused, and a long way from the noise.
-          </Reveal>
-          <Reveal as="p" delay={0.15} className="mx-auto mt-4 max-w-[48ch] text-copy text-mute">
-            Our clients are in India, the US, Europe and the Middle East. We work in your time zone for meetings and in
-            ours for deep work, which tends to mean you wake up to progress.
-          </Reveal>
+      <section className="overflow-hidden bg-fog py-16 text-graphite md:py-24">
+        <div className="wrap grid items-center gap-10 md:grid-cols-2 md:gap-16">
+          <div className="relative h-64 overflow-hidden rounded-3xl ring-1 ring-ink/[0.06] md:h-[24rem]">
+            <Image
+              src="/about/mandi.png"
+              alt="Mandi town in the Himalayan foothills at dusk"
+              fill
+              sizes="(max-width: 768px) 90vw, 46vw"
+              className="object-cover object-center"
+            />
+          </div>
+          <div>
+            <Eyebrow>Where we work</Eyebrow>
+            <Reveal as="h2" className="text-headline mt-4 max-w-[12ch] text-balance">
+              Built for anywhere.
+            </Reveal>
+            <p className="mt-6 max-w-[46ch] text-copy text-mute">
+              We’re based in {site.location.city}, a small city in {site.location.region} where the Beas river meets the
+              mountains. Quiet, focused, and a long way from the noise.
+            </p>
+            <p className="mt-4 max-w-[46ch] text-copy text-mute">
+              Our clients are in India, the US, Europe and the Middle East. We work in your time zone for meetings and in
+              ours for deep work, which tends to mean you wake up to progress.
+            </p>
+          </div>
         </div>
       </section>
 
