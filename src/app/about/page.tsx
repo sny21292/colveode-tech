@@ -37,7 +37,7 @@ export default function AboutTwoPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate overflow-hidden bg-ink text-white">
+      <section className="relative isolate overflow-hidden bg-ink text-white md:flex md:h-[30rem] md:items-center">
         {/* full-bleed photo on the right, fading into the black */}
         <div className="absolute inset-y-0 right-0 w-full md:w-[60%]">
           <Image
@@ -54,7 +54,7 @@ export default function AboutTwoPage() {
             style={{ background: "linear-gradient(to right, #0a0a0a 6%, rgba(10,10,10,0.55) 32%, transparent 62%)" }}
           />
         </div>
-        <div className="wrap relative z-10 pb-10 pt-24 md:pb-14 md:pt-28">
+        <div className="wrap relative z-10 pb-10 pt-24 md:w-full md:py-0">
           <div className="max-w-[40rem]">
             <Eyebrow dark>About us</Eyebrow>
             <h1 className="text-headline mt-4 max-w-[20ch] ">

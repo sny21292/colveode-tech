@@ -39,7 +39,7 @@ export default function ServicesTwoPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate overflow-hidden bg-ink text-white">
+      <section className="relative isolate overflow-hidden bg-ink text-white md:flex md:h-[30rem] md:items-center">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-3/5 md:block"
@@ -47,7 +47,7 @@ export default function ServicesTwoPage() {
             background: "radial-gradient(60% 62% at 72% 46%, rgba(198,26,74,0.42), rgba(96,14,44,0.28) 46%, transparent 74%)",
           }}
         />
-        <div className="wrap grid items-center gap-10 pb-10 pt-24 md:grid-cols-[1.05fr_0.95fr] md:pb-14 md:pt-28">
+        <div className="wrap grid items-center gap-10 pb-10 pt-24 md:w-full md:grid-cols-[1.05fr_0.95fr] md:py-0">
           <div className="relative z-10">
             <Eyebrow dark>Services</Eyebrow>
             <h1 className="text-headline mt-4 max-w-[18ch] text-balance">
@@ -61,7 +61,7 @@ export default function ServicesTwoPage() {
               <StartButton />
             </Reveal>
           </div>
-          <Reveal as="div" delay={0.2} amount={0.2} className="relative h-64 md:h-[24rem]">
+          <Reveal as="div" delay={0.2} amount={0.2} className="relative h-64 md:h-[18rem]">
             <div
               aria-hidden
               className="pointer-events-none absolute -inset-6 -z-10"

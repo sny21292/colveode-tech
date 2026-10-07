@@ -65,7 +65,13 @@ export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
   const p = getProject(slug);
   if (!p) notFound();
-  const others = projects.filter((o) => o.slug !== p.slug).slice(0, 3);
+  // Rotate the "More work" picks by the current project's position so each
+  // case study shows a different trio (wrapping around the list) instead of
+  // always the first three.
+  const idx = projects.findIndex((o) => o.slug === p.slug);
+  const others = Array.from({ length: 3 }, (_, i) => projects[(idx + 1 + i) % projects.length]).filter(
+    (o) => o.slug !== p.slug,
+  );
   const hasCaseStudy = !!(p.challenge || p.approach || p.results?.length);
 
   return (

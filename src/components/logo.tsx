@@ -11,9 +11,9 @@ export function Logo({ className = "", withName = true }: { className?: string; 
         width={480}
         height={379}
         priority
-        className="h-[22px] w-auto"
+        className="h-[30px] w-auto"
       />
-      {withName && <span className="text-[17px] font-semibold tracking-[-0.02em]">{site.shortName}</span>}
+      {withName && <span className="text-[20px] font-semibold tracking-[-0.02em]">{site.shortName}</span>}
     </Link>
   );
 }

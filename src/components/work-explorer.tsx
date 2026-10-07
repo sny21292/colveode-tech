@@ -49,7 +49,7 @@ export function WorkCard({ project }: { project: Project }) {
           <p className="line-clamp-2 text-fine text-mute">{project.summary}</p>
           <span
             aria-hidden
-            className="flex size-9 shrink-0 items-center justify-center rounded-full bg-ink/[0.06] text-graphite transition-colors duration-300 group-hover:bg-brand-pink group-hover:text-white"
+            className="flex size-9 shrink-0 items-center justify-center rounded-full bg-ink/[0.06] text-graphite transition-colors duration-300 group-hover:bg-gradient-to-r group-hover:from-brand-pink group-hover:to-brand-orange group-hover:text-white"
           >
             <ArrowRight className="size-4 transition-transform duration-300 ease-apple group-hover:translate-x-0.5" />
           </span>

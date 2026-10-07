@@ -3,6 +3,8 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  // Hide the on-screen Next.js dev indicator (the floating "N" badge). Dev-only; no effect on production.
+  devIndicators: false,
   images: {
     formats: ["image/avif", "image/webp"],
   },

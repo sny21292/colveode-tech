@@ -128,29 +128,26 @@ export default function ContactPage() {
 
   return (
     <>
-      <section className="relative isolate overflow-hidden bg-ink text-white">
-        {/* warm maroon glow behind the blob */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-[60%] md:block"
-          style={{
-            background: "radial-gradient(58% 66% at 72% 48%, rgba(198,26,74,0.5), rgba(96,14,44,0.32) 44%, transparent 74%)",
-          }}
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute right-0 top-1/2 hidden w-[52%] -translate-y-1/2 md:block lg:w-[46%]"
-        >
+      <section className="relative isolate overflow-hidden bg-ink text-white md:flex md:h-[30rem] md:items-center">
+        {/* full-bleed workspace photo on the right, fading into the black */}
+        <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 hidden w-[62%] md:block lg:w-[56%]">
           <Image
-            src="/backgrounds/contact-molecule.png"
+            src="/backgrounds/contact-hero.jpg"
             alt=""
-            width={1671}
-            height={941}
-            className="h-auto w-full object-contain"
+            fill
+            sizes="56vw"
+            className="object-cover object-center"
             priority
           />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(90deg, #000 0%, rgba(0,0,0,0.72) 20%, rgba(0,0,0,0.22) 58%, transparent 100%)",
+            }}
+          />
         </div>
-        <div className="wrap relative z-10 pb-10 pt-24 md:pb-14 md:pt-28">
+        <div className="wrap relative z-10 pb-10 pt-24 md:w-full md:py-0">
           <div className="max-w-[44rem]">
             <Eyebrow dark>Contact us</Eyebrow>
             <h1 className="text-headline mt-4 max-w-[15ch] text-balance">

@@ -17,8 +17,8 @@ export const metadata: Metadata = {
 export default function WorkPage() {
   return (
     <>
-      <section className="relative isolate overflow-hidden bg-ink text-white">
-        <div className="wrap grid items-center gap-8 pb-10 pt-24 md:grid-cols-[1.1fr_0.9fr] md:gap-6 md:pb-14 md:pt-28">
+      <section className="relative isolate overflow-hidden bg-ink text-white md:flex md:h-[30rem] md:items-center">
+        <div className="wrap grid items-center gap-8 pb-10 pt-24 md:w-full md:grid-cols-[1.1fr_0.9fr] md:gap-6 md:py-0">
           <div className="relative z-10">
             <Eyebrow dark>Our work</Eyebrow>
             <h1 className="text-headline mt-4 max-w-[24ch] text-balance">
@@ -38,7 +38,7 @@ export default function WorkPage() {
             </Reveal>
           </div>
 
-          <div className="relative aspect-[4/3] w-full md:aspect-auto md:h-[26rem]">
+          <div className="relative aspect-[4/3] w-full md:aspect-auto md:h-[18rem]">
             <div
               aria-hidden
               className="pointer-events-none absolute inset-0"
