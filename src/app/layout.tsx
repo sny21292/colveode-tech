@@ -19,6 +19,9 @@ export const metadata: Metadata = {
     template: `%s | ${site.shortName}`,
   },
   description: site.description,
+  verification: {
+    google: "pGSWZo5-IWdXA5HCAHDq-Eojaj_OA0fGoQULKIzlyAs",
+  },
   alternates: { canonical: "/" },
   applicationName: site.name,
   keywords: [
