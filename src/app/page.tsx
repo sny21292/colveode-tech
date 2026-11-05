@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Hero } from "@/components/hero";
 import { Statement } from "@/components/statement";
 import { ServicesRail } from "@/components/services-rail";
@@ -7,11 +8,28 @@ import { Figures } from "@/components/figures";
 import { TechMarquee } from "@/components/tech-marquee";
 import { Faq } from "@/components/faq";
 import { Cta } from "@/components/cta";
+import { JsonLd } from "@/components/json-ld";
 import { featuredProjects } from "@/content/projects";
+import { faq } from "@/content/faq";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
 
 export default function Home() {
   return (
     <>
+      <JsonLd data={faqJsonLd} />
       <Hero />
       <Statement>
         Cloveode is a software studio in the Himalayan foothills. We design and engineer websites, online

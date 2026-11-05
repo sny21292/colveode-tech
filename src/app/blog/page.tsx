@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import { Reveal } from "@/components/reveal";
 import { BlogExplorer } from "@/components/blog-explorer";
 import { Cta } from "@/components/cta";
 import { posts } from "@/content/blog";
 
-export const metadata: Metadata = {
-  title: "Blog",
+export const metadata: Metadata = pageMetadata({
+  title: "Blog: Web Development, Blockchain & SaaS Insights",
   description:
     "Insights and updates on web development, blockchain, APIs and SaaS from the Cloveode Technologies team.",
-  alternates: { canonical: "/blog" },
-};
+  path: "/blog",
+});
 
 export default function BlogPage() {
   return (

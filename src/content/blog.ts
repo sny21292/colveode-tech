@@ -1,11 +1,25 @@
 export type BlogBlock = { type: "heading" | "subheading" | "para" | "bullet" | "quote"; text: string };
-export type Post = { slug: string; title: string; category: string; date: string; image: string; excerpt: string; body: BlogBlock[] };
+export type Post = {
+  slug: string;
+  title: string;
+  /** search-result title (the site name is appended); the on-page title stays `title` */
+  seoTitle: string;
+  /** search-result description; `excerpt` is cut mid-word, so it isn’t used for search */
+  seoDescription: string;
+  category: string;
+  date: string;
+  image: string;
+  excerpt: string;
+  body: BlogBlock[];
+};
 
 /** Blog posts imported from the previous cloveode.com/blog. */
 export const posts: Post[] = [
   {
     "slug": "modern-web-development",
     "title": "The Complete Guide to Modern Web Development in 2024",
+    "seoTitle": "A Complete Guide to Modern Web Development",
+    "seoDescription": "Modern web development explained: TypeScript, choosing a front-end framework, Core Web Vitals, Jamstack, APIs, testing and deployment.",
     "category": "Web Development",
     "date": "October 26, 2024",
     "image": "/blog/web-dev-blog.jpg",
@@ -244,6 +258,8 @@ export const posts: Post[] = [
   {
     "slug": "blockchain-evolution",
     "title": "Blockchain Technology in 2024: Revolutionizing Industries Beyond Cryptocurrency",
+    "seoTitle": "Blockchain Beyond Crypto: Real Business Uses",
+    "seoDescription": "How blockchain is used beyond cryptocurrency: smart contracts, enterprise solutions, cross-chain interoperability, Layer 2 scaling and regulation.",
     "category": "Blockchain",
     "date": "October 12, 2024",
     "image": "/blog/blockchain-dev-blog.jpg",
@@ -402,6 +418,8 @@ export const posts: Post[] = [
   {
     "slug": "api-architecture",
     "title": "The Evolution of API Services: Building Modern Digital Architecture",
+    "seoTitle": "API Services & Modern Digital Architecture",
+    "seoDescription": "How APIs underpin modern software: API-first design, security and authentication, scaling, governance, testing and where API services are heading.",
     "category": "API Development",
     "date": "November 09, 2024",
     "image": "/blog/api-blog.jpg",
@@ -560,6 +578,8 @@ export const posts: Post[] = [
   {
     "slug": "saas-evolution",
     "title": "The SaaS Revolution: Transforming Business Operations in the Digital Age",
+    "seoTitle": "The SaaS Revolution: How It Changes Business",
+    "seoDescription": "How SaaS is changing business: modern SaaS architecture, AI integration, security and compliance, vertical SaaS, pricing models and what comes next.",
     "category": "SaaS",
     "date": "November 16, 2024",
     "image": "/blog/saas-blog.jpg",

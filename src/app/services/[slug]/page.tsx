@@ -14,7 +14,8 @@ import { Cta } from "@/components/cta";
 import { TechChip } from "@/components/tech-icons";
 import { getService, services } from "@/content/services";
 import { projects } from "@/content/projects";
-import { site } from "@/content/site";
+import { JsonLd } from "@/components/json-ld";
+import { absolute, breadcrumbs, organizationRef, pageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -26,12 +27,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const s = getService(slug);
   if (!s) return {};
-  return {
-    title: s.title,
-    description: s.short,
-    alternates: { canonical: `/services/${slug}` },
-    openGraph: { title: `${s.title} | ${site.name}`, description: s.short, url: `/services/${slug}` },
-  };
+  return pageMetadata({
+    title: s.seoTitle,
+    description: s.seoDescription,
+    path: `/services/${slug}`,
+    image: `/services/${slug}-hero.jpg`,
+  });
 }
 
 const values = [
@@ -86,9 +87,28 @@ export default async function ServicePage({ params }: Props) {
   // Show the capabilities the approach section doesn’t already cover, so the two don’t repeat.
   const buildCards = s.capabilities.length > 3 ? s.capabilities.slice(3) : s.capabilities.slice(0, 3);
   const work = projects.filter((p) => p.featured && p.image).slice(0, 2);
+  const path = `/services/${s.slug}`;
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: s.title,
+      serviceType: s.title,
+      description: s.lead,
+      url: absolute(path),
+      image: absolute(`/services/${s.slug}-hero.jpg`),
+      provider: organizationRef,
+      areaServed: "Worldwide",
+    },
+    breadcrumbs([
+      { name: "Services", path: "/services" },
+      { name: s.title, path },
+    ]),
+  ];
 
   return (
     <>
+      <JsonLd data={jsonLd} />
       {/* Hero */}
       <section className="relative isolate overflow-hidden bg-ink text-white">
         <div
