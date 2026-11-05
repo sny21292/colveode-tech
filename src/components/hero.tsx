@@ -43,8 +43,8 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.4, ease }}
           className="text-lede mt-6 max-w-[38ch] text-balance text-white/80"
         >
-          Websites, online stores, blockchain systems and custom software for companies that want to move
-          fast and last long.
+          Web development, Shopify and WooCommerce stores, blockchain and custom software for businesses in
+          India and around the world.
         </motion.p>
         <motion.div
           initial={reduced ? false : { opacity: 0, y: 16 }}

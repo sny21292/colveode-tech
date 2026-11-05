@@ -162,7 +162,8 @@ export default function ContactPage() {
               <span className="brand-text">.</span>
             </h1>
             <Reveal as="p" delay={0.4} className="text-lede mt-5 max-w-[42ch] text-white/70">
-              A few sentences is enough to start. We’ll reply within one business day with questions or a plan.
+              Start a web, e-commerce or software project. A few sentences is enough, and we’ll reply within one
+              business day with questions or a plan.
             </Reveal>
             <Reveal delay={0.5} className="mt-9 flex flex-wrap gap-x-6 gap-y-5">
               {features.map((f) => (
