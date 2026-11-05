@@ -9,12 +9,14 @@ export function CoverArt({
   hue,
   image,
   label,
+  alt,
   className = "",
 }: {
   hue: number;
   image?: string;
-  /** used for the fallback monogram + image alt */
+  /** used for the fallback monogram, and as the image alt when `alt` isn’t set */
   label?: string;
+  alt?: string;
   className?: string;
 }) {
   if (image) {
@@ -22,7 +24,7 @@ export function CoverArt({
       <div className={`relative overflow-hidden bg-graphite ${className}`}>
         <Image
           src={image}
-          alt={label ?? ""}
+          alt={alt ?? label ?? ""}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           className="object-cover object-top transition-transform duration-700 ease-apple group-hover:scale-[1.04]"

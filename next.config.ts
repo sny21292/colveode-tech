@@ -9,7 +9,10 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
   },
   async redirects() {
-    return [];
+    return [
+      // case study removed (the client’s site no longer exists)
+      { source: "/work/habebe-lounge", destination: "/work", permanent: true },
+    ];
   },
   async headers() {
     return [

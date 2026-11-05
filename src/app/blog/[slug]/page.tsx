@@ -134,7 +134,7 @@ export default async function BlogPostPage({ params }: Props) {
       <section className="bg-fog pt-10 md:pt-14">
         <div className="wrap">
           <Reveal as="div" className="relative aspect-[16/8] overflow-hidden rounded-3xl bg-graphite ring-1 ring-ink/[0.06]">
-            <Image src={p.image} alt="" fill sizes="(max-width: 1320px) 100vw, 1320px" className="object-cover" priority />
+            <Image src={p.image} alt={p.title} fill sizes="(max-width: 1320px) 100vw, 1320px" className="object-cover" priority />
           </Reveal>
         </div>
       </section>
@@ -166,7 +166,7 @@ export default async function BlogPostPage({ params }: Props) {
                 className="group flex h-full flex-col overflow-hidden rounded-2xl bg-fog ring-1 ring-ink/[0.06] transition-transform duration-500 ease-apple hover:-translate-y-1"
               >
                 <div className="relative aspect-[16/10] overflow-hidden bg-graphite">
-                  <Image src={o.image} alt="" fill sizes="(max-width:1024px) 50vw, 33vw" className="object-cover transition-transform duration-700 ease-apple group-hover:scale-[1.04]" />
+                  <Image src={o.image} alt={o.title} fill sizes="(max-width:1024px) 50vw, 33vw" className="object-cover transition-transform duration-700 ease-apple group-hover:scale-[1.04]" />
                 </div>
                 <div className="flex flex-1 flex-col p-5">
                   <span className="text-fine font-medium text-brand-pink">{o.category}</span>

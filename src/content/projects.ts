@@ -658,29 +658,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "habebe-lounge",
-    tech: ["Next.js","React","TypeScript"],
-    title: "A responsive frontend for a lounge brand",
-    client: "Habebe Lounge",
-    category: "Web development",
-    summary:
-      "Frontend development and a responsive UI for a lounge brand — reusable components and site features built with Next.js, React and TypeScript.",
-    year: 2026,
-    hue: 300,
-    image: "/work/habebe-lounge.png",
-    heroMockup: "/work/habebe-mockup.png",
-    link: "https://www.habebeelounge.com.my/",
-    overview: "A vibrant kitchen-and-bar frontend, built to feel alive.",
-    service: "Next.js, React, TypeScript",
-    challenge:
-      "The Mural Kitchen & Bar needed a frontend that captures the energy of the venue — bold, vibrant and fully responsive — with reusable components that keep the site easy to extend.",
-    approach:
-      "I built the frontend and responsive UI in Next.js, React and TypeScript, implementing reusable components and the site’s features so the brand’s food-drinks-and-vibes personality comes through on every screen size.",
-    body: [
-      "Built the frontend and a responsive UI for Habebe Lounge, implementing reusable components and the site’s features with Next.js, React and TypeScript.",
-    ],
-  },
-  {
     slug: "silent-aces",
     tech: ["WordPress","PHP","HTML","CSS"],
     title: "A poker-platform website in WordPress and core PHP",
@@ -766,4 +743,14 @@ export const featuredProjects = projects.filter((p) => p.featured);
 
 export function getProject(slug: string) {
   return projects.find((p) => p.slug === slug);
+}
+
+/** Alt text for a project’s screenshots, so they can show in image search. */
+export function screenshotAlt(p: Project, n?: number) {
+  return `${p.client || p.title} website screenshot${n ? ` ${n}` : ""}`;
+}
+
+/** Alt text for a project’s device mockup. */
+export function mockupAlt(p: Project) {
+  return `${p.client || p.title} website on desktop and mobile`;
 }

@@ -4,7 +4,7 @@ import { ArrowRight, ArrowUpRight, ChevronRight } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { Eyebrow } from "@/components/eyebrow";
 import { WorkCard } from "@/components/work-explorer";
-import type { Project } from "@/content/projects";
+import { mockupAlt, screenshotAlt, type Project } from "@/content/projects";
 
 function FeaturedCard({ project }: { project: Project }) {
   return (
@@ -48,7 +48,7 @@ function FeaturedCard({ project }: { project: Project }) {
           {(project.heroMockup || project.image) && (
             <Image
               src={project.heroMockup ?? project.image ?? ""}
-              alt=""
+              alt={project.heroMockup ? mockupAlt(project) : screenshotAlt(project)}
               fill
               sizes="(max-width: 768px) 90vw, 42vw"
               className="object-contain object-center"

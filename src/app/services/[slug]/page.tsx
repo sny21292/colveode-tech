@@ -13,7 +13,7 @@ import { Eyebrow } from "@/components/eyebrow";
 import { Cta } from "@/components/cta";
 import { TechChip } from "@/components/tech-icons";
 import { getService, services } from "@/content/services";
-import { projects } from "@/content/projects";
+import { projects, screenshotAlt } from "@/content/projects";
 import { JsonLd } from "@/components/json-ld";
 import { absolute, breadcrumbs, organizationRef, pageMetadata } from "@/lib/seo";
 
@@ -310,7 +310,7 @@ export default async function ServicePage({ params }: Props) {
               {work.map((p) => (
                 <Link key={p.slug} href={`/work/${p.slug}`} className="group grid grid-cols-[1.1fr_1fr] items-center gap-5 rounded-3xl bg-white p-5 ring-1 ring-ink/[0.06] transition-transform duration-500 ease-apple hover:-translate-y-1">
                   <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-graphite">
-                    <Image src={p.image!} alt="" fill sizes="30vw" className="object-cover object-top" />
+                    <Image src={p.image!} alt={screenshotAlt(p)} fill sizes="30vw" className="object-cover object-top" />
                   </div>
                   <div>
                     <h3 className="text-[1.15rem] font-semibold leading-snug tracking-[-0.02em]">{p.client}</h3>
