@@ -6,6 +6,8 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { WordReveal, Reveal } from "@/components/reveal";
 import { Cta } from "@/components/cta";
 import { getPost, posts, type BlogBlock } from "@/content/blog";
+import { JsonLd } from "@/components/json-ld";
+import { absolute, breadcrumbs, isoDate, organizationRef, pageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
   return posts.map((p) => ({ slug: p.slug }));
@@ -17,18 +19,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const p = getPost(slug);
   if (!p) return {};
-  return {
-    title: p.title,
-    description: p.excerpt,
-    alternates: { canonical: `/blog/${slug}` },
-    openGraph: {
-      type: "article",
-      title: p.title,
-      description: p.excerpt,
-      url: `/blog/${slug}`,
-      publishedTime: Number.isNaN(Date.parse(p.date)) ? undefined : new Date(p.date).toISOString(),
-    },
-  };
+  return pageMetadata({
+    title: p.seoTitle,
+    description: p.seoDescription,
+    path: `/blog/${slug}`,
+    image: p.image,
+    type: "article",
+    publishedTime: isoDate(p.date),
+  });
 }
 
 /** Render the article body, grouping consecutive bullets into a list. */
@@ -91,9 +89,29 @@ export default async function BlogPostPage({ params }: Props) {
   const p = getPost(slug);
   if (!p) notFound();
   const others = posts.filter((o) => o.slug !== p.slug).slice(0, 3);
+  const path = `/blog/${p.slug}`;
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: p.title,
+      description: p.seoDescription,
+      image: absolute(p.image),
+      datePublished: isoDate(p.date),
+      articleSection: p.category,
+      author: organizationRef,
+      publisher: organizationRef,
+      mainEntityOfPage: absolute(path),
+    },
+    breadcrumbs([
+      { name: "Blog", path: "/blog" },
+      { name: p.title, path },
+    ]),
+  ];
 
   return (
     <>
+      <JsonLd data={jsonLd} />
       {/* Hero */}
       <section className="bg-ink pb-10 pt-24 text-white md:pb-14 md:pt-28">
         <div className="wrap max-w-[52rem]">

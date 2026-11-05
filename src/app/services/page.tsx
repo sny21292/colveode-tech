@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Rocket, Award, Users, Heart } from "lucide-react";
@@ -16,12 +17,13 @@ const stats = [
   { icon: Heart, value: "100%", label: "Focused on your growth" },
 ];
 
-export const metadata: Metadata = {
-  title: "Services",
+export const metadata: Metadata = pageMetadata({
+  title: "Services: Web, E-commerce, Blockchain & Software",
   description:
     "Web development, e-commerce, blockchain, custom software, SEO and integrations — everything a modern business needs to run online, from one team.",
-  alternates: { canonical: "/services" },
-};
+  path: "/services",
+  image: "/services/services-hero.jpg",
+});
 
 function StartButton({ className = "" }: { className?: string }) {
   return (

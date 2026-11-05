@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+import { site } from "@/content/site";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
@@ -8,11 +10,11 @@ import { WorkExplorer } from "@/components/work-explorer";
 import { Cta } from "@/components/cta";
 import { projects } from "@/content/projects";
 
-export const metadata: Metadata = {
-  title: "Work",
-  description: "Selected projects across e-commerce, blockchain, custom software, web development and SEO.",
-  alternates: { canonical: "/work" },
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Our Work: Shopify, Web & Software Case Studies",
+  description: `Case studies from ${site.figures.projects}+ projects: Shopify stores, web apps, AI automation, fintech platforms and SEO for clients worldwide, with the tech used on each.`,
+  path: "/work",
+});
 
 export default function WorkPage() {
   return (

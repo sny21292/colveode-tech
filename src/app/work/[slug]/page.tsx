@@ -11,6 +11,8 @@ import { WorkCard } from "@/components/work-explorer";
 import { TechStack } from "@/components/tech-icons";
 import { Zoom } from "@/components/zoom";
 import { getProject, projects, type Project } from "@/content/projects";
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbs, pageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -22,12 +24,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const p = getProject(slug);
   if (!p) return {};
-  return {
+  return pageMetadata({
     title: p.title,
     description: p.summary,
-    alternates: { canonical: `/work/${slug}` },
-    openGraph: { title: p.title, description: p.summary, url: `/work/${slug}` },
-  };
+    path: `/work/${slug}`,
+    image: p.image,
+  });
 }
 
 /** A screenshot in a subtle browser frame. */
@@ -76,6 +78,12 @@ export default async function ProjectPage({ params }: Props) {
 
   return (
     <>
+      <JsonLd
+        data={breadcrumbs([
+          { name: "Work", path: "/work" },
+          { name: p.title, path: `/work/${p.slug}` },
+        ])}
+      />
       {/* Hero */}
       <section className="relative isolate overflow-hidden bg-ink text-white">
         <div className="wrap grid items-center gap-8 pb-8 pt-20 md:grid-cols-2 md:gap-12 md:pb-10 md:pt-24">

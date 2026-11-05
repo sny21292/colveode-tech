@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Target, MessageCircle, Code2, Users, Gem, TrendingUp, Globe } from "lucide-react";
@@ -7,11 +8,11 @@ import { Eyebrow } from "@/components/eyebrow";
 import { Cta } from "@/components/cta";
 import { site } from "@/content/site";
 
-export const metadata: Metadata = {
-  title: "About",
-  description: `${site.name} is a software studio founded in ${site.founded} in ${site.location.city}, ${site.location.region}. We build websites, stores, blockchain systems and custom software for clients worldwide.`,
-  alternates: { canonical: "/about" },
-};
+export const metadata: Metadata = pageMetadata({
+  title: "About Cloveode: Software Studio in Mandi, India",
+  description: `${site.name} is a software studio in ${site.location.city}, ${site.location.region}, building websites, online stores, blockchain and custom software for clients worldwide.`,
+  path: "/about",
+});
 
 const values = [
   { icon: Target, title: "Care about the outcome", text: "We measure a project by what it does for your business after launch, not by the features list on day one." },

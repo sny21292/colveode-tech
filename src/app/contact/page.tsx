@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import type { ReactNode } from "react";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
@@ -7,11 +8,11 @@ import { Eyebrow } from "@/components/eyebrow";
 import { ContactForm } from "./contact-form";
 import { site } from "@/content/site";
 
-export const metadata: Metadata = {
-  title: "Contact",
+export const metadata: Metadata = pageMetadata({
+  title: "Contact Us: Start Your Web or Software Project",
   description: `Start a project with ${site.name}. Tell us what you’re working on and we’ll reply within one business day.`,
-  alternates: { canonical: "/contact" },
-};
+  path: "/contact",
+});
 
 const EmailIcon = (
   <svg viewBox="0 0 74 74" fill="none" className="size-12 shrink-0" aria-hidden>

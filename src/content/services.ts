@@ -2,6 +2,10 @@ export type Service = {
   slug: string;
   title: string;
   short: string;
+  /** search-result title (the site name is appended); keep under ~50 characters */
+  seoTitle: string;
+  /** search-result description; aim for 140–160 characters */
+  seoDescription: string;
   lead: string;
   body: string[];
   capabilities: string[];
@@ -15,6 +19,9 @@ export const services: Service[] = [
     slug: "web-development",
     title: "Web development",
     short: "Fast, responsive websites and web apps built to be found and to last.",
+    seoTitle: "Web Development: Next.js, React & WordPress Sites",
+    seoDescription:
+      "Custom websites and web apps built with Next.js, React, Laravel and WordPress. Fast, search-friendly, and looked after once they’re live.",
     lead:
       "From marketing sites to full web applications, we build on modern frameworks so your site loads fast, ranks well and grows with you.",
     body: [
@@ -37,6 +44,9 @@ export const services: Service[] = [
     slug: "e-commerce-solutions",
     title: "E-commerce",
     short: "Online stores that are secure, quick and built to convert.",
+    seoTitle: "Shopify & WooCommerce E-commerce Development",
+    seoDescription:
+      "Shopify, WooCommerce and custom online stores that load fast, check out smoothly and grow with your catalogue, with payments, inventory and SEO built in.",
     lead:
       "We build stores on Shopify, BigCommerce and WooCommerce, or from scratch when your catalogue or checkout needs something the platforms can’t do.",
     body: [
@@ -59,6 +69,9 @@ export const services: Service[] = [
     slug: "blockchain-development",
     title: "Blockchain",
     short: "Smart contracts, dApps and private chains built with security first.",
+    seoTitle: "Blockchain Development: Smart Contracts & dApps",
+    seoDescription:
+      "Smart contracts, dApps and private chains on Ethereum, Solana and Hyperledger, built security-first with code review and audits before launch.",
     lead:
       "We help businesses use blockchain where it genuinely helps: transparent records, automated agreements and secure, decentralised applications.",
     body: [
@@ -81,6 +94,9 @@ export const services: Service[] = [
     slug: "custom-software-development",
     title: "Custom software",
     short: "Tailored applications that fit how your business actually works.",
+    seoTitle: "Custom Software Development: SaaS, APIs & Tools",
+    seoDescription:
+      "Internal tools, SaaS platforms and APIs built around how your business really works, integrated with your existing systems. You keep the code.",
     lead:
       "When off-the-shelf tools stop fitting, we design and build software around your real processes, from internal tools to full enterprise platforms.",
     body: [
@@ -103,6 +119,9 @@ export const services: Service[] = [
     slug: "seo-services",
     title: "SEO services",
     short: "SEO services that help the right customers find your business.",
+    seoTitle: "SEO Services: Technical, On-Page & Local SEO",
+    seoDescription:
+      "Technical, on-page and local SEO that helps the right customers find you, from keyword research and site fixes to monthly reporting on enquiries.",
     lead:
       "Build a stronger organic presence with practical technical, on-page and local SEO. We help businesses target relevant searches, improve their website experience and turn organic visits into meaningful enquiries.",
     body: [
@@ -125,6 +144,9 @@ export const services: Service[] = [
     slug: "software-integrations-consulting",
     title: "Integrations & consulting",
     short: "Connecting your systems and choosing the right technology.",
+    seoTitle: "Software Integration & Technology Consulting",
+    seoDescription:
+      "Connect your systems, automate manual data entry and choose the right technology, with honest advice and staged rollouts that don’t disrupt your team.",
     lead:
       "We help you pick the right tools, connect them to what you already have and roll them out without disrupting the business.",
     body: [
