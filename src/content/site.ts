@@ -6,6 +6,8 @@ export const site = {
   description:
     "Cloveode Technologies designs and engineers websites, online stores, blockchain systems and custom software for companies that want to move fast and last long.",
   email: "info@cloveode.com",
+  /** Google Analytics 4, “Cloveode Website” stream */
+  analyticsId: "G-D41PLDW8WN",
   // Address, phone and hours must match the Google Business Profile exactly.
   phone: { display: "+91 86288 92998", tel: "+918628892998" },
   hours: { label: "Monday to Friday, 10am to 7pm", days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "10:00", closes: "19:00" },

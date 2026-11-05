@@ -1,10 +1,11 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowRight, Lock } from "lucide-react";
 import { sendEnquiry, type ContactState } from "./actions";
 import { site } from "@/content/site";
+import { trackEvent } from "@/components/analytics";
 
 const initial: ContactState = { status: "idle" };
 
@@ -14,6 +15,17 @@ const field =
 export function ContactForm() {
   const [state, action, pending] = useActionState(sendEnquiry, initial);
   const v = state.values;
+
+  // Count sent enquiries as leads, and failed submits as form errors, in Google Analytics.
+  useEffect(() => {
+    if (state.status === "success") trackEvent("generate_lead", { form: "contact" });
+    if (state.status === "error") {
+      trackEvent("form_error", {
+        form: "contact",
+        reason: state.errors ? `invalid: ${Object.keys(state.errors).join(",")}` : "send_failed",
+      });
+    }
+  }, [state]);
 
   if (state.status === "success") {
     return (
