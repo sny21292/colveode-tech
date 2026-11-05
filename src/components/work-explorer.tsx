@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 import { ArrowRight, Search } from "lucide-react";
 import { motion } from "motion/react";
 import { CoverArt } from "@/components/cover-art";
-import type { Project } from "@/content/projects";
+import { screenshotAlt, type Project } from "@/content/projects";
 
 export const GROUP_ORDER = [
   "Web development",
@@ -35,7 +35,13 @@ export function WorkCard({ project }: { project: Project }) {
       className="group flex flex-col overflow-hidden rounded-lg bg-white ring-1 ring-ink/[0.06] shadow-[0_1px_2px_rgba(15,15,15,0.04)] transition-[transform,box-shadow] duration-500 ease-apple hover:-translate-y-1 hover:shadow-[0_24px_48px_-20px_rgba(15,15,15,0.22)]"
     >
       <div className="aspect-[16/10] overflow-hidden">
-        <CoverArt hue={project.hue} image={project.image} label={project.client || project.title} className="size-full" />
+        <CoverArt
+          hue={project.hue}
+          image={project.image}
+          label={project.client || project.title}
+          alt={screenshotAlt(project)}
+          className="size-full"
+        />
       </div>
       <div className="flex flex-1 flex-col p-5">
         <span className="text-fine font-medium text-brand-pink">{project.category}</span>

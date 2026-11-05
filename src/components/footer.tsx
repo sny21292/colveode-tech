@@ -23,6 +23,7 @@ const columns = [
       { label: "Instagram", href: site.social.instagram, external: true },
       { label: "Facebook", href: site.social.facebook, external: true },
       { label: site.email, href: `mailto:${site.email}`, external: true },
+      { label: site.phone.display, href: `tel:${site.phone.tel}`, external: true },
     ],
   },
 ];
@@ -70,7 +71,8 @@ export function Footer() {
             © {new Date().getFullYear()} {site.name}. All rights reserved.
           </p>
           <p>
-            {site.location.city}, {site.location.region} {site.location.postalCode}, {site.location.country}
+            {site.location.street}, {site.location.city}, {site.location.region} {site.location.postalCode},{" "}
+            {site.location.country}
           </p>
         </div>
       </div>

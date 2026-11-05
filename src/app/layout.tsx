@@ -50,7 +50,7 @@ const organizationJsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
+      "@type": ["Organization", "ProfessionalService"],
       "@id": `${site.url}/#organization`,
       name: site.name,
       url: site.url,
@@ -58,16 +58,26 @@ const organizationJsonLd = {
       image: `${site.url}/brand/logo-mark.png`,
       description: site.description,
       email: site.email,
+      telephone: site.phone.tel,
       foundingDate: String(site.founded),
       address: {
         "@type": "PostalAddress",
+        streetAddress: site.location.street,
         addressLocality: site.location.city,
         addressRegion: site.location.region,
         postalCode: site.location.postalCode,
         addressCountry: "IN",
       },
+      geo: { "@type": "GeoCoordinates", ...site.location.geo },
+      hasMap: site.location.mapsUrl,
+      openingHoursSpecification: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: site.hours.days,
+        opens: site.hours.opens,
+        closes: site.hours.closes,
+      },
       areaServed: "Worldwide",
-      sameAs: Object.values(site.social),
+      sameAs: [...Object.values(site.social), site.location.mapsUrl],
     },
     {
       "@type": "WebSite",

@@ -10,7 +10,7 @@ import { CoverArt } from "@/components/cover-art";
 import { WorkCard } from "@/components/work-explorer";
 import { TechStack } from "@/components/tech-icons";
 import { Zoom } from "@/components/zoom";
-import { getProject, projects, type Project } from "@/content/projects";
+import { getProject, mockupAlt, projects, screenshotAlt, type Project } from "@/content/projects";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbs, pageMetadata } from "@/lib/seo";
 
@@ -41,7 +41,13 @@ function BrowserShot({ project, aspect = "aspect-[16/10]" }: { project: Project;
         <span className="size-2.5 rounded-full bg-white/25" />
         <span className="size-2.5 rounded-full bg-white/25" />
       </div>
-      <CoverArt hue={project.hue} image={project.image} label={project.client || project.title} className={aspect} />
+      <CoverArt
+        hue={project.hue}
+        image={project.image}
+        label={project.client || project.title}
+        alt={screenshotAlt(project)}
+        className={aspect}
+      />
     </div>
   );
 }
@@ -127,8 +133,7 @@ export default async function ProjectPage({ params }: Props) {
                 />
                 <Image
                   src={p.heroMockup}
-                  alt=""
-                  aria-hidden
+                  alt={mockupAlt(p)}
                   fill
                   sizes="(max-width: 768px) 92vw, 46vw"
                   className="object-contain"
@@ -220,7 +225,7 @@ export default async function ProjectPage({ params }: Props) {
                 {p.gallery.map((g, i) => (
                   <Zoom key={i} src={g}>
                     <div className="relative aspect-[4/3] overflow-hidden rounded-md bg-graphite ring-1 ring-ink/10 transition-[transform,box-shadow] duration-300 ease-apple group-hover:-translate-y-0.5 group-hover:shadow-lg">
-                      <Image src={g} alt="" fill sizes="220px" className="object-cover object-top" />
+                      <Image src={g} alt={screenshotAlt(p, i + 2)} fill sizes="220px" className="object-cover object-top" />
                     </div>
                   </Zoom>
                 ))}
@@ -242,6 +247,7 @@ export default async function ProjectPage({ params }: Props) {
                     hue={p.hue}
                     image={p.caseImage ?? p.gallery?.[0] ?? p.image}
                     label={p.client || p.title}
+                    alt={screenshotAlt(p)}
                     className="aspect-[16/10]"
                   />
                 </div>

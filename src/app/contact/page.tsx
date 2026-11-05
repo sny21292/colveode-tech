@@ -22,6 +22,16 @@ const EmailIcon = (
   </svg>
 );
 
+const PhoneIcon = (
+  <svg viewBox="0 0 74 74" fill="none" className="size-12 shrink-0" aria-hidden>
+    <circle cx="37" cy="37" r="37" fill="#FDE8EF" />
+    <path
+      d="M29.5 20.5c1.2 0 2.2.8 2.6 1.9l2 5.6c.3.9.1 1.9-.6 2.6l-3 3c1.9 3.9 5 7 8.9 8.9l3-3c.7-.7 1.7-.9 2.6-.6l5.6 2c1.1.4 1.9 1.4 1.9 2.6v5.1c0 1.6-1.3 2.9-2.9 2.9C33.8 51.5 22.5 40.2 22.5 26.4c0-1.6 1.3-2.9 2.9-2.9z"
+      fill="#F20D5C"
+    />
+  </svg>
+);
+
 const PinIcon = (
   <svg viewBox="0 0 74 74" fill="none" className="size-12 shrink-0" aria-hidden>
     <circle cx="37" cy="37" r="37" fill="#FDE8EF" />
@@ -123,10 +133,6 @@ function ContactRow({
 }
 
 export default function ContactPage() {
-  const mapsUrl = `https://maps.google.com/?q=${encodeURIComponent(
-    `${site.location.city}, ${site.location.region} ${site.location.postalCode}, ${site.location.country}`,
-  )}`;
-
   return (
     <>
       <section className="relative isolate overflow-hidden bg-ink text-white md:flex md:h-[30rem] md:items-center">
@@ -192,13 +198,15 @@ export default function ContactPage() {
 
               <div className="mt-8 divide-y divide-ink/[0.08]">
                 <ContactRow icon={EmailIcon} label="Email" value={site.email} href={`mailto:${site.email}`} />
+                <ContactRow icon={PhoneIcon} label="Phone" value={site.phone.display} href={`tel:${site.phone.tel}`} />
                 <ContactRow
                   icon={PinIcon}
                   label="Our studio"
-                  value={`${site.location.city}, ${site.location.region} ${site.location.postalCode}\n${site.location.country}`}
-                  href={mapsUrl}
+                  value={`${site.location.street}\n${site.location.city}, ${site.location.region} ${site.location.postalCode}, ${site.location.country}`}
+                  href={site.location.mapsUrl}
                 />
               </div>
+              <p className="mt-4 text-fine text-mute">Open {site.hours.label} (IST).</p>
 
               <hr className="my-8 border-ink/[0.08]" />
 
