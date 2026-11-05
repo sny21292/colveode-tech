@@ -27,7 +27,8 @@ export default function WorkPage() {
               <WordReveal text="Work that carries real weight." />
             </h1>
             <Reveal as="p" delay={0.4} className="text-lede mt-6 max-w-[40ch] text-white/70">
-              A selection of projects across retail, logistics, healthcare, finance and services.
+              Case studies from {site.figures.projects}+ projects: Shopify stores, web apps, AI automation and fintech
+              platforms for clients worldwide.
             </Reveal>
             <Reveal delay={0.5} className="mt-9">
               <Link

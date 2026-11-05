@@ -57,7 +57,7 @@ export default function ServicesTwoPage() {
               <span className="brand-text">run online.</span>
             </h1>
             <Reveal as="p" delay={0.4} className="text-lede mt-6 max-w-[40ch] text-white/70">
-              Six core services, one team. Pick what you need now and add the rest as you grow.
+              Web development, e-commerce, blockchain, custom software, SEO and integrations, all from one team.
             </Reveal>
             <Reveal delay={0.5} className="mt-9">
               <StartButton />

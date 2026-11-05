@@ -62,8 +62,8 @@ export default function AboutTwoPage() {
               <WordReveal text="A small studio with a long view." />
             </h1>
             <Reveal as="p" delay={0.4} className="text-lede mt-5 max-w-[38ch] text-white/70">
-              Founded in {site.founded} in {site.location.city}, {site.location.region}, in the foothills of the
-              Himalayas. Our clients are everywhere.
+              A web and software development studio in {site.location.city}, {site.location.region}, since{" "}
+              {site.founded}. Our clients are everywhere.
             </Reveal>
             <Reveal delay={0.5} className="mt-7">
               <Link
